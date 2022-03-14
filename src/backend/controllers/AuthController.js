@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { Response } from "miragejs";
 import { formatDate } from "../utils/authUtils";
 import bcrypt from "bcryptjs";
@@ -29,7 +29,7 @@ export const signupHandler = function (schema, request) {
         }
       );
     }
-    const _id = uuid();
+    const _id = uuidv4();
     const encryptedPassword = bcrypt.hashSync(password, 5);
     const newUser = {
       _id,
