@@ -13,11 +13,11 @@ export const Logo = ({ variant }) => {
           </span>
         </Link>
       ) : (
-        <div class="txt-small">
-          © 2022
-          <div class={styles.nav_logo}>
-            <span class="txt-sm">MARVEL</span>
-            <span class="txt-sm">KART</span>
+        <div className="txt-small">
+          © 2022{"  "}
+          <div className={styles.nav_logo}>
+            <span className="txt-sm">MARVEL</span>
+            <span className="txt-sm">KART</span>
           </div>
         </div>
       )}

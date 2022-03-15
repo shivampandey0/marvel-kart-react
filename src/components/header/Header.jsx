@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Logo } from "../logo/Logo";
 
 export const Header = () => {
@@ -26,25 +27,25 @@ export const Header = () => {
             </button>
             <ul className="menu">
               <li>
-                <a href="./pages/login.html" className="btn btn-primary">
+                <Link to="/login" className="btn btn-primary">
                   Login
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="./pages/wishlist.html" className="wishlist">
+                <Link to="/wishlist" className="wishlist">
                   <div className="badge-wrapper">
                     <i className="fas fa-heart menu-icon" />
                     <span className="badge badge-info">3</span>
                   </div>
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="./pages/cart.html" className="cart">
+                <Link to="/cart" className="cart">
                   <div className="badge-wrapper">
                     <i className="fas fa-shopping-cart menu-icon" />
                     <span className="badge badge-info">3</span>
                   </div>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
