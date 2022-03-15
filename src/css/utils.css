@@ -1,0 +1,21 @@
+/* colors classes */
+
+.primary-text-color {
+  color: var(--primary);
+}
+
+.secondary-text-color {
+  color: var(--secondary);
+}
+
+.primary-link {
+  color: var(--primary);
+}
+
+.primary-link:hover {
+  border-bottom: 2px solid var(--primary);
+}
+
+.mw-80 {
+  max-width: 80vh;
+}

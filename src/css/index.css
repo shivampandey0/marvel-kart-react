@@ -1,0 +1,18 @@
+@import url("./utils.css");
+html {
+  font-size: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+  --primary: #f44336;
+  --primary-light: #ffcdd2;
+  --primary-dark: #d32f2f;
+  --secondary: #009688;
+  --primary-text: #212121;
+  --secondary-text: #757575;
+  --border: #bdbdbd;
+  --white: #ffffff;
+
+  --link: #212121;
+}
