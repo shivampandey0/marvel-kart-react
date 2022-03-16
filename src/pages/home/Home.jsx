@@ -1,22 +1,9 @@
 import styles from "./Home.module.css";
-import { CategoryLink } from "./CategoryLink";
-import { useState, useEffect } from "react";
 import { Header, Footer } from "../../components";
-import axios from "axios";
 import banner from "../../assets/landing-page-bg.jpeg";
+import { Categories } from "./Categories";
 
 export const Home = () => {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await axios.get("api/categories");
-        setCategories(res.data.categories);
-      } catch (error) {}
-    })();
-  }, []);
-
   return (
     <>
       <main className="m-auto">
@@ -28,13 +15,7 @@ export const Home = () => {
           <div
             className={` ${styles.categories} flex-row flex-wrap justify-cntr gap-2`}
           >
-            {categories.map(({ _id, categoryImage, categoryName }) => (
-              <CategoryLink
-                key={_id}
-                categoryImg={categoryImage}
-                categoryName={categoryName}
-              />
-            ))}
+            <Categories />
           </div>
         </section>
       </main>

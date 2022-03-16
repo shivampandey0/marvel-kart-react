@@ -5,7 +5,11 @@ export const CategoryLink = ({ categoryImg, categoryName }) => {
   return (
     <>
       <Link to="/products" className="flex-column flex-center">
-        <img  src={categoryImg} alt="" className={styles.home_featured} />
+        <img
+          src={categoryImg}
+          alt={categoryName}
+          className={styles.home_featured}
+        />
         <div className={styles.category_name}>{categoryName}</div>
       </Link>
     </>
