@@ -8,20 +8,37 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
+    categoryName: "Captain America",
+    categoryImage: "https://marvel-kart.stdcdn.com/captain.webp",
     description:
       "literature in the form of prose, especially novels, that describes imaginary events and people",
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
+    categoryName: "Ironman",
+    categoryImage: "https://marvel-kart.stdcdn.com/ironman.webp",
     description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+      "literature in the form of prose, especially novels, that describes imaginary events and people",
   },
   {
     _id: uuid(),
-    categoryName: "horror",
+    categoryName: "Black widow",
+    categoryImage: "https://marvel-kart.stdcdn.com/widow.webp",
     description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+      "literature in the form of prose, especially novels, that describes imaginary events and people",
   },
+  {
+    _id: uuid(),
+    categoryName: "Hulk",
+    categoryImage: "https://marvel-kart.stdcdn.com/hulk.webp",
+    description:
+      "literature in the form of prose, especially novels, that describes imaginary events and people",
+  },
+  {
+    _id: uuid(),
+    categoryName: "Thor",
+    categoryImage: "https://marvel-kart.stdcdn.com/thor.webp",
+    description:
+      "literature in the form of prose, especially novels, that describes imaginary events and people",
+  }
 ];

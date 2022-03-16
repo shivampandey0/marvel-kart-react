@@ -1,0 +1,25 @@
+/* Footer */
+.footer > ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.footer {
+  background-color: var(--primary-light);
+  margin-top: var(--size-8);
+  padding: var(--size-4);
+}
+
+.footer-social {
+  margin: var(--size-2) 0;
+  padding: var(--size-2);
+  font-size: calc(var(--scale-3) / 2);
+  color: var(--primary-text);
+  border-bottom: 2px solid transparent;
+}
+
+.footer-social:hover {
+  color: var(--primary);
+  border-bottom-color: var(--secondary);
+}
