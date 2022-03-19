@@ -19,3 +19,7 @@
 .mw-80 {
   max-width: 80vh;
 }
+
+.pos-fixed{
+  position: fixed;
+}
