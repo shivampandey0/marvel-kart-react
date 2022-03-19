@@ -1,0 +1,4 @@
+export const ACTION_TYPE = {
+  CATEGORIES: "CATEGORIES",
+  PRODUCTS: "PRODUCTS",
+};
