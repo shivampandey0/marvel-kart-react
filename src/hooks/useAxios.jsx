@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 axios.defaults.baseURL = "api/";
 
-const useAxios = ({ url, method, body = null, headers = null }) => {
+export const useAxios = ({ url, method, body = null, headers = null }) => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
@@ -25,9 +25,7 @@ const useAxios = ({ url, method, body = null, headers = null }) => {
 
   useEffect(() => {
     fetchData();
-  }, [method,url,body,headers]);
+  }, [method, url, body, headers]);
 
   return { response, error, loading };
 };
-
-export default useAxios;
