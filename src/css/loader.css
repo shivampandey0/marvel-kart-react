@@ -7,6 +7,15 @@
   width: 1em;
   height: 4em;
 }
+
+.center-loader {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
 .loader {
   color: #ff1a1a;
   text-indent: -9999em;
