@@ -1,0 +1,1 @@
+export {dataReducer} from './dataReducer';
