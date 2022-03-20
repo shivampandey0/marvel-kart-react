@@ -11,8 +11,6 @@ import { Response } from "miragejs";
  * */
 
 export const getAllTypesHandler = function () {
-  console.log(this.db.types);
-  console.log(this.db.categories);
   try {
     return new Response(200, {}, { types: this.db.types });
   } catch (error) {
