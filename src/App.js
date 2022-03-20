@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { Footer, Header } from "./components";
 import { Home, Products } from "./pages";
 import Login from "./pages/login/Login";
