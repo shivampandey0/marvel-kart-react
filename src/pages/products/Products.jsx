@@ -25,7 +25,7 @@ export const Products = () => {
   return (
     <div className="listings-container">
       <Filters />
-      <ProductsGrid loading={loading} products={state.products} />
+      <ProductsGrid loading={loading} />
     </div>
   );
 };

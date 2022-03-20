@@ -11,7 +11,7 @@ export const Product = ({ product }) => {
     offer,
   } = product;
 
-  const finalPrice = Number(price) - (Number(price) * offer) / 100;
+  // const finalPrice = Number(price) - (Number(price) * offer) / 100;
   return (
     <>
       <div className="card product-card">
@@ -24,28 +24,24 @@ export const Product = ({ product }) => {
         <figure className="card-image">
           <img className="img-responsive" src={image} alt={title} />
         </figure>
-        <div className="card-body">
+        <div className="card-body flex-column gap-05">
           <div className="card-title fw-bold">{title}</div>
+          <div className="card-subtitle txt-grey">{categoryName}</div>
           <small className="card-subtitle txt-grey">{productType}</small>
         </div>
         <div className="card-content flex-row justify-sb align-cntr">
           <span className="badge-info card-badge txt-sm">
-            {rating.starRating} <i class="fas fa-star mx-1" />{" "}
+            {rating.starRating} <i className="fas fa-star mx-1" />{" "}
           </span>
           {fastDelivery && (
             <span>
-              <i class="fas fa-truck secondary-text-color"></i>
+              <i className="fas fa-truck secondary-text-color"></i>
             </span>
           )}
         </div>
         <div className="card-price">
-          <span className="txt-sm fw-bold">{`Rs.${Math.ceil(
-            finalPrice
-          )} `}</span>
-          <span className="h4 txt-light txt-striked txt-grey">{`Rs.${Number(
-            price
-          )}`}</span>
-          <span className="txt-sm fw-normal primary-link">{` (${offer}% off)`}</span>
+          <span className="txt-sm fw-bold">{`Rs.${price} `}</span>
+          <span className="txt-sm fw-normal primary-text-color">{` (${offer}% off)`}</span>
         </div>
         <div className="card-buttons flex-column gap-05">
           <button className="btn btn-primary">Add to cart</button>
