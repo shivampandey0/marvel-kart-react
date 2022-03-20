@@ -1,11 +1,14 @@
 import { createContext, useContext, useReducer } from "react";
+import { types } from "../backend/db/types";
+import { categories } from "../backend/db/categories";
 import { dataReducer } from "../reducers";
 
 const DataContext = createContext();
 
 const initial = {
-  categories: null,
-  products: null,
+  categories: [],
+  products: [],
+  productTypes: [],
 };
 
 const DataProvider = ({ children }) => {
