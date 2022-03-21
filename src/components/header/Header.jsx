@@ -10,7 +10,7 @@ export const Header = () => {
             <button className="btn hamburger-menu">
               <i className="fas fa-bars icon" />
             </button>
-            <Logo variant={"header"} />
+            <Logo />
           </div>
           <div className="search">
             <i className="fa-solid fa-magnifying-glass icon" />

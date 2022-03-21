@@ -37,7 +37,7 @@ export const Footer = () => {
         </li>
       </ul>
 
-      <Logo />
+      <Logo variant={"footer"} />
     </footer>
   );
 };
