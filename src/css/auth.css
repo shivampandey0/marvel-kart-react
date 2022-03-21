@@ -1,0 +1,77 @@
+.full-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.left-container {
+  width: 40%;
+  background-color: var(--secondary);
+  justify-content: flex-end;
+  gap: var(--scale-6);
+  color: var(--white);
+}
+
+.right-container {
+  width: 60%;
+  gap: var(--scale-2);
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-container,
+.right-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container{
+  min-width: 50%;;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  color: var(--primary-text);
+  gap: var(--scale-1);
+  margin: var(--size-2) 0;
+}
+
+.pass-toggle {
+  position: relative;
+}
+
+.pass-toggle .icon {
+  position: absolute;
+  cursor: pointer;
+  top: 25%;
+  color: var(--secondary-text);
+  bottom: 20%;
+  text-align: center;
+  font-size: var(--scale-1);
+  right: 2%;
+}
+
+.pass-toggle .icon:hover {
+  color: var(--primary);
+}
+
+input[type="checkbox"] {
+  margin-right: var(--size-4);
+  margin-bottom: var(--size-2);
+}
+
+@media screen and (max-width: 768px) {
+  .left-container {
+    display: none;
+  }
+  .right-container {
+    width: 100%;
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+}
