@@ -1,4 +1,4 @@
-import { FilterInput } from "../../components";
+import { FilterInput, Fieldset } from "../../components";
 import { useFilters } from "../../context";
 import { PriceRange } from "./Range";
 import {
@@ -29,27 +29,25 @@ export const Filters = () => {
         </div>
         {/* Filters Group */}
         <section className="filters-group">
-          <PriceRange
-            value={filterState.priceRange}
-            changeHandler={(e) =>
-              dispatch({
-                type: ACTION_TYPE.PRICE_RANGE,
-                payload: e.target.value,
-              })
-            }
-          />
+          <Fieldset title={"Price"}>
+            <PriceRange
+              value={filterState.priceRange}
+              changeHandler={(e) =>
+                dispatch({
+                  type: ACTION_TYPE.PRICE_RANGE,
+                  payload: e.target.value,
+                })
+              }
+            />
+          </Fieldset>
 
-          <fieldset className="my-2">
-            <legend className="fw-bold">Sort</legend>
-
+          <Fieldset title={"Sort"}>
             <FilterInput
-              // key={_id}
               title="Price - Low to High"
               inputType="radio"
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === LOW_HIGH_PRICE}
-              // value={LOW_HIGH_PRICE}
               changeHandler={(e) =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
@@ -59,13 +57,11 @@ export const Filters = () => {
             />
 
             <FilterInput
-              // key={_id}
               title="Price - High to Low"
               inputType="radio"
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === HIGH_LOW_PRICE}
-              // value={LOW_HIGH_PRICE}
               changeHandler={(e) =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
@@ -75,13 +71,11 @@ export const Filters = () => {
             />
 
             <FilterInput
-              // key={_id}
               title="Rating - Low to High"
               inputType="radio"
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === LOW_HIGH_RATING}
-              // value={LOW_HIGH_PRICE}
               changeHandler={(e) =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
@@ -91,13 +85,11 @@ export const Filters = () => {
             />
 
             <FilterInput
-              // key={_id}
               title="Rating - High to Low"
               inputType="radio"
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === HIGH_LOW_RATING}
-              // value={LOW_HIGH_PRICE}
               changeHandler={(e) =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
@@ -105,18 +97,15 @@ export const Filters = () => {
                 })
               }
             />
-          </fieldset>
+          </Fieldset>
 
-          <fieldset className="my-2">
-            <legend className="fw-bold">Product Type</legend>
-
+          <Fieldset title={"Product Type"}>
             {types.map(({ _id, productType }) => {
               return (
                 <FilterInput
                   key={_id}
                   title={productType}
                   inputType="checkbox"
-                  // name={name}
                   checked={filterState.productTypes.some(
                     (item) => item === productType.toLowerCase()
                   )}
@@ -130,17 +119,16 @@ export const Filters = () => {
                 />
               );
             })}
-          </fieldset>
+          </Fieldset>
 
-          <fieldset className="my-2">
-            <legend className="fw-bold">Categories</legend>
-
+          <Fieldset title={"Categories"}>
             {categories.map(({ _id, categoryName }) => {
               return (
                 <FilterInput
                   key={_id}
                   title={categoryName}
                   inputType="checkbox"
+                  className="checkbox"
                   checked={filterState.categories.some(
                     (item) => item === categoryName.toLowerCase()
                   )}
@@ -154,74 +142,28 @@ export const Filters = () => {
                 />
               );
             })}
-          </fieldset>
+          </Fieldset>
 
-          <fieldset className="my-2">
-            <legend className="fw-bold">Rating</legend>
-
-            <FilterInput
-              // key={_id}
-              title="4 Stars &amp; above"
-              inputType="radio"
-              className="radio"
-              name={ACTION_TYPE.RATING}
-              checked={filterState.rating === 4}
-              changeHandler={(e) =>
-                dispatch({
-                  type: ACTION_TYPE.RATING,
-                  payload: 4,
-                })
-              }
-            />
-
-            <FilterInput
-              // key={_id}
-              title="3 Stars &amp; above"
-              inputType="radio"
-              className="radio"
-              name={ACTION_TYPE.RATING}
-              checked={filterState.rating === 3}
-              // value={LOW_HIGH_PRICE}
-              changeHandler={(e) =>
-                dispatch({
-                  type: ACTION_TYPE.RATING,
-                  payload: 3,
-                })
-              }
-            />
-
-            <FilterInput
-              // key={_id}
-              title="2 Stars &amp; above"
-              inputType="radio"
-              className="radio"
-              name={ACTION_TYPE.RATING}
-              checked={filterState.rating === 2}
-              // value={LOW_HIGH_PRICE}
-              changeHandler={(e) =>
-                dispatch({
-                  type: ACTION_TYPE.RATING,
-                  payload: 2,
-                })
-              }
-            />
-
-            <FilterInput
-              // key={_id}
-              title="1 Stars &amp; above"
-              inputType="radio"
-              className="radio"
-              name={ACTION_TYPE.RATING}
-              checked={filterState.rating === 1}
-              // value={LOW_HIGH_PRICE}
-              changeHandler={(e) =>
-                dispatch({
-                  type: ACTION_TYPE.RATING,
-                  payload: 1,
-                })
-              }
-            />
-          </fieldset>
+          <Fieldset title={"Rating"}>
+            {[4, 3, 2, 1].map((item) => {
+              return (
+                <FilterInput
+                  key={item}
+                  title={`${item} Stars & above`}
+                  inputType="radio"
+                  className="radio"
+                  name={ACTION_TYPE.RATING}
+                  checked={filterState.rating === item}
+                  changeHandler={(e) =>
+                    dispatch({
+                      type: ACTION_TYPE.RATING,
+                      payload: item,
+                    })
+                  }
+                />
+              );
+            })}
+          </Fieldset>
 
           <FilterInput
             title="Include out of stock"
