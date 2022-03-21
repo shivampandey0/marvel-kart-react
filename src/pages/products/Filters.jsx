@@ -1,93 +1,192 @@
+import { FilterInput, Fieldset } from "../../components";
+import { useFilters } from "../../context";
+import { PriceRange } from "./Range";
+import {
+  ACTION_TYPE,
+  HIGH_LOW_PRICE,
+  HIGH_LOW_RATING,
+  LOW_HIGH_PRICE,
+  LOW_HIGH_RATING,
+} from "../../utils";
+import { types } from "../../backend/db/types";
+import { categories } from "../../backend/db/categories";
+
 export const Filters = () => {
+  const { state: filterState, dispatch } = useFilters();
+
   return (
     <>
       <aside className="listings-filters">
         {/* Filters Header  */}
         <div className="filter-header">
           <h3 className="fw-bold">Filters</h3>
-          <button className="btn btn-link">Clear</button>
+          <button
+            className="btn btn-link"
+            onClick={() => dispatch({ type: ACTION_TYPE.CLEAR })}
+          >
+            Clear
+          </button>
         </div>
         {/* Filters Group */}
         <section className="filters-group">
-          <div className="slider-container">
-            <h4 className="fw-exb">Price</h4>
-            <input
-              type="range"
-              min="0"
-              max="10000"
-              aria-label="input-range-slider"
-              step="2500"
-              value="2500"
-              list="tickmarks"
-              className="slider"
+          <Fieldset title={"Price"}>
+            <PriceRange
+              value={filterState.priceRange}
+              changeHandler={(e) =>
+                dispatch({
+                  type: ACTION_TYPE.PRICE_RANGE,
+                  payload: e.target.value,
+                })
+              }
             />
-            <datalist id="tickmarks">
-              <option value="0"></option>
-              <option value="2500"></option>
-              <option value="5000"></option>
-              <option value="7500"></option>
-              <option value="10000"></option>
-            </datalist>
-          </div>
+          </Fieldset>
 
-          <div className="category-filter my-2">
-            <h4 className="fw-exb">Categories</h4>
-            <ul className="py-2 px-2">
-              <li className="filter-list-item">
-                <input type="checkbox" name="category" id="action-figures" />
-                <label for="action-figures">Action Figures</label>
-              </li>
-              <li className="filter-list-item">
-                <input type="checkbox" name="category" id="bags" />
-                <label for="bags">Bags</label>
-              </li>
-              <li className="filter-list-item">
-                <input type="checkbox" name="category" id="costumes" />
-                <label for="costumes">Costumes</label>
-              </li>
-              <li className="filter-list-item">
-                <input type="checkbox" name="category" id="t-shirts" />
-                <label for="t-shirts">T-Shirts &amp; Tops</label>
-              </li>
-            </ul>
-          </div>
+          <Fieldset title={"Sort"}>
+            <FilterInput
+              title="Price - Low to High"
+              inputType="radio"
+              className="radio"
+              name={ACTION_TYPE.SORT_BY}
+              checked={filterState.sortBy === LOW_HIGH_PRICE}
+              changeHandler={(e) =>
+                dispatch({
+                  type: ACTION_TYPE.SORT_BY,
+                  payload: LOW_HIGH_PRICE,
+                })
+              }
+            />
 
-          <div className="rating-filter my-2">
-            <h4 className="fw-exb">Ratings</h4>
+            <FilterInput
+              title="Price - High to Low"
+              inputType="radio"
+              className="radio"
+              name={ACTION_TYPE.SORT_BY}
+              checked={filterState.sortBy === HIGH_LOW_PRICE}
+              changeHandler={(e) =>
+                dispatch({
+                  type: ACTION_TYPE.SORT_BY,
+                  payload: HIGH_LOW_PRICE,
+                })
+              }
+            />
 
-            <ul className="py-2 px-2">
-              <li className="filter-list-item">
-                <input type="radio" className="radio" name="review" id="review-4" />
-                <label for="review-4">4 Stars &amp; above</label>
-              </li>
-              <li className="filter-list-item">
-                <input type="radio" className="radio" name="review" id="review-3" />
-                <label for="review-3">3 Stars &amp; above</label>
-              </li>
-              <li className="filter-list-item">
-                <input type="radio" className="radio" name="review" id="review-2" />
-                <label for="review-2">2 Stars &amp; above</label>
-              </li>
-              <li className="filter-list-item">
-                <input type="radio" className="radio" name="review" id="review-1" />
-                <label for="review-1">1 Stars &amp; above</label>
-              </li>
-            </ul>
-          </div>
+            <FilterInput
+              title="Rating - Low to High"
+              inputType="radio"
+              className="radio"
+              name={ACTION_TYPE.SORT_BY}
+              checked={filterState.sortBy === LOW_HIGH_RATING}
+              changeHandler={(e) =>
+                dispatch({
+                  type: ACTION_TYPE.SORT_BY,
+                  payload: LOW_HIGH_RATING,
+                })
+              }
+            />
 
-          <div className="sort-filter my-2">
-            <h4 className="fw-exb">Sort by</h4>
-            <ul className="px-2 py-2">
-              <li className="filter-list-item">
-                <input type="radio" className="radio" name="sort" id="low-high" />
-                <label for="low-high">Price - Low to High</label>
-              </li>
-              <li className="filter-list-item">
-                <input type="radio" className="radio" name="sort" id="high-low" />
-                <label for="high-low">Price - High to Low</label>
-              </li>
-            </ul>
-          </div>
+            <FilterInput
+              title="Rating - High to Low"
+              inputType="radio"
+              className="radio"
+              name={ACTION_TYPE.SORT_BY}
+              checked={filterState.sortBy === HIGH_LOW_RATING}
+              changeHandler={(e) =>
+                dispatch({
+                  type: ACTION_TYPE.SORT_BY,
+                  payload: HIGH_LOW_RATING,
+                })
+              }
+            />
+          </Fieldset>
+
+          <Fieldset title={"Product Type"}>
+            {types.map(({ _id, productType }) => {
+              return (
+                <FilterInput
+                  key={_id}
+                  title={productType}
+                  inputType="checkbox"
+                  checked={filterState.productTypes.some(
+                    (item) => item === productType.toLowerCase()
+                  )}
+                  value={productType}
+                  changeHandler={(e) =>
+                    dispatch({
+                      type: ACTION_TYPE.PRODUCT_TYPE,
+                      payload: e.target.value.toLowerCase(),
+                    })
+                  }
+                />
+              );
+            })}
+          </Fieldset>
+
+          <Fieldset title={"Categories"}>
+            {categories.map(({ _id, categoryName }) => {
+              return (
+                <FilterInput
+                  key={_id}
+                  title={categoryName}
+                  inputType="checkbox"
+                  className="checkbox"
+                  checked={filterState.categories.some(
+                    (item) => item === categoryName.toLowerCase()
+                  )}
+                  value={categoryName}
+                  changeHandler={(e) =>
+                    dispatch({
+                      type: ACTION_TYPE.CATEGORIES,
+                      payload: e.target.value.toLowerCase(),
+                    })
+                  }
+                />
+              );
+            })}
+          </Fieldset>
+
+          <Fieldset title={"Rating"}>
+            {[4, 3, 2, 1].map((item) => {
+              return (
+                <FilterInput
+                  key={item}
+                  title={`${item} Stars & above`}
+                  inputType="radio"
+                  className="radio"
+                  name={ACTION_TYPE.RATING}
+                  checked={filterState.rating === item}
+                  changeHandler={(e) =>
+                    dispatch({
+                      type: ACTION_TYPE.RATING,
+                      payload: item,
+                    })
+                  }
+                />
+              );
+            })}
+          </Fieldset>
+
+          <FilterInput
+            title="Include out of stock"
+            inputType="checkbox"
+            checked={filterState.inStock}
+            changeHandler={(e) =>
+              dispatch({
+                type: ACTION_TYPE.STOCK,
+                payload: e.target.checked,
+              })
+            }
+          />
+          <FilterInput
+            title="Fast Delivery Only"
+            inputType="checkbox"
+            checked={filterState.fastDelivery}
+            changeHandler={(e) =>
+              dispatch({
+                type: ACTION_TYPE.FAST_DELIVERY,
+                payload: e.target.checked,
+              })
+            }
+          />
         </section>
       </aside>
     </>

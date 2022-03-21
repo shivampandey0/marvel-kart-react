@@ -27,7 +27,7 @@ export const products = [
     productType: "Bags",
     inStock: true,
     fastDelivery: true,
-    rating: { starRating: 3, totalRating: 20 },
+    rating: { starRating: 4, totalRating: 20 },
     offer: 30
   },
   {
@@ -39,7 +39,7 @@ export const products = [
     productType: "Bags",
     inStock: true,
     fastDelivery: true,
-    rating: { starRating: 3, totalRating: 20 },
+    rating: { starRating: 4, totalRating: 20 },
     offer: 30
   },
   {
@@ -51,7 +51,7 @@ export const products = [
     productType: "T-Shirts & Tops",
     inStock: true,
     fastDelivery: false,
-    rating: { starRating: 3, totalRating: 20 },
+    rating: { starRating: 2, totalRating: 20 },
     offer: 30
   },
   {
@@ -63,7 +63,7 @@ export const products = [
     productType: "Action Figures",
     inStock: false,
     fastDelivery: true,
-    rating: { starRating: 3, totalRating: 20 },
+    rating: { starRating: 1, totalRating: 20 },
     offer: 30
   },
   {
@@ -75,7 +75,7 @@ export const products = [
     productType: "Bags",
     inStock: true,
     fastDelivery: false,
-    rating: { starRating: 3, totalRating: 20 },
+    rating: { starRating: 4, totalRating: 20 },
     offer: 30
   },
   {
@@ -87,7 +87,7 @@ export const products = [
     productType: "Action Figures",
     inStock: true,
     fastDelivery: false,
-    rating: { starRating: 3, totalRating: 20 },
+    rating: { starRating: 5, totalRating: 20 },
     offer: 30
   },
   {
@@ -99,7 +99,7 @@ export const products = [
     productType: "Bags",
     inStock: false,
     fastDelivery: false,
-    rating: { starRating: 3, totalRating: 20 },
+    rating: { starRating: 2.5, totalRating: 20 },
     offer: 30
   },
   {
