@@ -1,20 +1,16 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 axios.defaults.baseURL = "api/";
 
-export const useAxios = ({ url, method, body = null, headers = null }) => {
+export const useAxios = () => {
   const [response, setResponse] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
+  const sendRequest = async (params) => {
     try {
-      const res = await axios[method](
-        url,
-        JSON.parse(headers),
-        JSON.parse(body)
-      );
+      const res = await axios.request(params);    
       setResponse(res.data);
     } catch (error) {
       setError(error);
@@ -23,9 +19,5 @@ export const useAxios = ({ url, method, body = null, headers = null }) => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [method, url, body, headers]);
-
-  return { response, error, loading };
+  return { response, error, loading, sendRequest };
 };

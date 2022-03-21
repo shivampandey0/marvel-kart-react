@@ -1,20 +1,22 @@
-import { Product } from "./Product";
 import { useEffect } from "react";
 import "../../css/products-listing.css";
 import { useAxios } from "../../hooks";
-import { Loader } from "../../components";
 import { useData } from "../../context";
 import { ACTION_TYPE } from "../../utils";
 import { ProductsGrid } from "./ProductsGrid";
 import { Filters } from "./Filters";
 
 export const Products = () => {
-  const { response, error, loading } = useAxios({
-    method: "get",
-    url: "products",
-  });
+  const { response, error, loading, sendRequest } = useAxios();
 
-  const { state, dispatch } = useData();
+  const { dispatch } = useData();
+
+  useEffect(() => {
+    sendRequest({
+      method: "get",
+      url: "products",
+    });
+  }, []);
 
   useEffect(() => {
     if (response) {

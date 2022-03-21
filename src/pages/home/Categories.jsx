@@ -6,12 +6,16 @@ import { useData } from "../../context";
 import { ACTION_TYPE } from "../../utils";
 
 export const Categories = () => {
-  const { response, error, loading } = useAxios({
-    method: "get",
-    url: "categories",
-  });
+  const { response, error, loading, sendRequest } = useAxios();
 
   const { state, dispatch } = useData();
+
+  useEffect(() => {
+    sendRequest({
+      method: "get",
+      url: "categories",
+    });
+  }, []);
 
   useEffect(() => {
     if (response) {
