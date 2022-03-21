@@ -1,25 +1,44 @@
+import { Fieldset } from "../../components";
+
 export const PriceRange = ({ value, changeHandler }) => {
   return (
-    <div className="slider-container">
-      <h4 className="fw-exb">Price</h4>
+    <>
       <input
         type="range"
         min="0"
         max="1000"
         aria-label="input-range-slider"
-        step="250"
         value={value}
         onChange={changeHandler}
-        list="tickmarks"
         className="slider"
       />
-      <datalist id="tickmarks">
-        <option value="0"></option>
-        <option value="250"></option>
-        <option value="500"></option>
-        <option value="750"></option>
-        <option value="1000"></option>
-      </datalist>
-    </div>
+      <div className="flex-row gap-2 my-2">
+        <label className="flex-row gap-05 align-cntr">
+          Min
+          <input
+            className="input"
+            type="number"
+            name="min"
+            id="min"
+            value={0}
+            disabled
+            aria-label="min-price"
+          />
+        </label>
+        <label className="flex-row gap-05 align-cntr">
+          Max
+          <input
+            className="input"
+            type="number"
+            name="max"
+            max={1000}
+            id="max"
+            value={value}
+            onChange={changeHandler}
+            aria-label="min-price"
+          />
+        </label>
+      </div>
+    </>
   );
 };
