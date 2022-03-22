@@ -1,5 +1,4 @@
 import styles from "./Home.module.css";
-import { Header, Footer } from "../../components";
 import { Categories } from "./Categories";
 
 export const Home = () => {

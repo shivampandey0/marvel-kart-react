@@ -24,7 +24,7 @@ export const Login = () => {
             />
 
             <div className="flex-row align-cntr justify-sb">
-              <label for="remember">
+              <label htmlFor="remember">
                 <input type="checkbox" id="remember" /> Remember Me
               </label>
 

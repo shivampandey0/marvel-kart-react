@@ -48,7 +48,7 @@ export const Filters = () => {
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === LOW_HIGH_PRICE}
-              changeHandler={(e) =>
+              changeHandler={() =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
                   payload: LOW_HIGH_PRICE,
@@ -62,7 +62,7 @@ export const Filters = () => {
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === HIGH_LOW_PRICE}
-              changeHandler={(e) =>
+              changeHandler={() =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
                   payload: HIGH_LOW_PRICE,
@@ -76,7 +76,7 @@ export const Filters = () => {
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === LOW_HIGH_RATING}
-              changeHandler={(e) =>
+              changeHandler={() =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
                   payload: LOW_HIGH_RATING,
@@ -90,7 +90,7 @@ export const Filters = () => {
               className="radio"
               name={ACTION_TYPE.SORT_BY}
               checked={filterState.sortBy === HIGH_LOW_RATING}
-              changeHandler={(e) =>
+              changeHandler={() =>
                 dispatch({
                   type: ACTION_TYPE.SORT_BY,
                   payload: HIGH_LOW_RATING,
@@ -154,7 +154,7 @@ export const Filters = () => {
                   className="radio"
                   name={ACTION_TYPE.RATING}
                   checked={filterState.rating === item}
-                  changeHandler={(e) =>
+                  changeHandler={() =>
                     dispatch({
                       type: ACTION_TYPE.RATING,
                       payload: item,
