@@ -5,12 +5,13 @@ axios.defaults.baseURL = "api/";
 
 export const useAxios = () => {
   const [response, setResponse] = useState(null);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
   const sendRequest = async (params) => {
+    setLoading(true);
     try {
-      const res = await axios.request(params);    
+      const res = await axios.request(params);
       setResponse(res.data);
     } catch (error) {
       setError(error);
