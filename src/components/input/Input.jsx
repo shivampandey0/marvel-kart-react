@@ -1,38 +1,40 @@
-export const Input = ({ label, type, placeholder, autoComplete, required }) => {
-  if (type === "password") {
-    return (
-      <div className="input-group">
-        <label className={required && "required"} htmlFor={label}>
-          {label}
-        </label>
-        <div className="pass-toggle">
-          <input
-            className="input"
-            type={type}
-            id={label}
-            placeholder={placeholder}
-            required={required}
-            autoComplete={autoComplete}
-          />
-          <i className="fas fa-eye-slash icon"></i>
-        </div>
-      </div>
-    );
-  }
+import { useState } from "react";
+export const Input = ({
+  label,
+  type,
+  placeholder,
+  autoComplete,
+  required,
+  value,
+  changeHandler,
+}) => {
+  const [obscure, setObscure] = useState(true);
 
   return (
     <div className="input-group">
       <label className={required && "required"} htmlFor={label}>
         {label}
       </label>
-      <input
-        className="input"
-        type={type}
-        id={label}
-        placeholder={placeholder}
-        required={required}
-        autoComplete={autoComplete}
-      />
+      <div className={`${type === "password" && "pass-toggle"}`}>
+        <input
+          className="input"
+          type={obscure ? type : "text"}
+          id={label}
+          value={value}
+          placeholder={placeholder}
+          required={required}
+          autoComplete={autoComplete}
+          onChange={changeHandler}
+        />
+        {type === "password" && (
+          <i
+            onClick={() => setObscure((prev) => !prev)}
+            className={`fas icon ${
+              obscure ? "hide-pass fa-eye-slash" : "show-pass fa-eye"
+            }`}
+          ></i>
+        )}
+      </div>
     </div>
   );
 };

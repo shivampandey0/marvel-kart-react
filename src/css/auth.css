@@ -26,8 +26,8 @@
   flex-direction: column;
 }
 
-.form-container{
-  min-width: 50%;;
+.form-container {
+  width: 50%;
 }
 
 .input-row {
