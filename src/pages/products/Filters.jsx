@@ -106,8 +106,8 @@ export const Filters = () => {
                   key={_id}
                   title={productType}
                   inputType="checkbox"
-                  checked={filterState.productTypes.some(
-                    (item) => item === productType.toLowerCase()
+                  checked={filterState.productTypes.includes(
+                    productType.toLowerCase()
                   )}
                   value={productType}
                   changeHandler={(e) =>
@@ -129,8 +129,8 @@ export const Filters = () => {
                   title={categoryName}
                   inputType="checkbox"
                   className="checkbox"
-                  checked={filterState.categories.some(
-                    (item) => item === categoryName.toLowerCase()
+                  checked={filterState.categories.includes(
+                    categoryName.toLowerCase()
                   )}
                   value={categoryName}
                   changeHandler={(e) =>

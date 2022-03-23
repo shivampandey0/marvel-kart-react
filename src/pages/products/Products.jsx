@@ -7,7 +7,7 @@ import { ProductsGrid } from "./ProductsGrid";
 import { Filters } from "./Filters";
 
 export const Products = () => {
-  const { response, error, loading, sendRequest } = useAxios();
+  const { response, loading, sendRequest } = useAxios();
 
   const { dispatch } = useData();
 

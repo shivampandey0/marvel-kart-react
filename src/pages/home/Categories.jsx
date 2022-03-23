@@ -6,7 +6,7 @@ import { useData } from "../../context";
 import { ACTION_TYPE } from "../../utils";
 
 export const Categories = () => {
-  const { response, error, loading, sendRequest } = useAxios();
+  const { response, loading, sendRequest } = useAxios();
 
   const { state, dispatch } = useData();
 
