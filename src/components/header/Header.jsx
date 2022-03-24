@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { Logo } from "../logo/Logo";
+import { Logo } from "../";
+import { useAuth } from "../../context";
 
 export const Header = () => {
+  const { auth, logoutUser } = useAuth();
   return (
     <>
       <header className="header">
@@ -10,7 +12,7 @@ export const Header = () => {
             <button className="btn hamburger-menu">
               <i className="fas fa-bars icon" />
             </button>
-            <Logo variant={"header"} />
+            <Logo />
           </div>
           <div className="search">
             <i className="fa-solid fa-magnifying-glass icon" />
@@ -27,9 +29,15 @@ export const Header = () => {
             </button>
             <ul className="menu">
               <li>
-                <Link to="/login" className="btn btn-primary">
-                  Login
-                </Link>
+                {auth && auth.token ? (
+                  <button className="btn btn-primary" onClick={logoutUser}>
+                    Logout
+                  </button>
+                ) : (
+                  <Link to="/login" className="btn btn-primary">
+                    Login
+                  </Link>
+                )}
               </li>
               <li>
                 <Link to="/wishlist" className="wishlist">

@@ -1,5 +1,3 @@
-import { Fieldset } from "../../components";
-
 export const PriceRange = ({ value, changeHandler }) => {
   return (
     <>

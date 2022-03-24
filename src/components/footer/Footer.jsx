@@ -13,6 +13,7 @@ export const Footer = () => {
             href="https://github.com/shivampandey0"
             className="footer-social"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fab fa-github"></i>
           </a>
@@ -22,6 +23,7 @@ export const Footer = () => {
             href="https://twitter.com/ErShivamPandey"
             className="footer-social"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fab fa-twitter"></i>
           </a>
@@ -31,13 +33,14 @@ export const Footer = () => {
             href="https://www.linkedin.com/in/shivampandey0/"
             className="footer-social"
             target="_blank"
+            rel="noreferrer"
           >
             <i className="fab fa-linkedin-in"></i>
           </a>
         </li>
       </ul>
 
-      <Logo />
+      <Logo variant={"footer"} />
     </footer>
   );
 };

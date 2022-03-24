@@ -4,6 +4,9 @@ export {
   HIGH_LOW_RATING,
   LOW_HIGH_PRICE,
   LOW_HIGH_RATING,
+  emailRegex,
+  nameRegex,
+  passwordRegex
 } from "./constants";
 
 export {

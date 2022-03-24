@@ -23,3 +23,7 @@
 .pos-fixed{
   position: fixed;
 }
+
+.form-error{
+  background-color: white;
+}
