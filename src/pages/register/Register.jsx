@@ -5,15 +5,18 @@ import {
   FormError,
   FilterInput,
 } from "../../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/auth.css";
 import { useState, useEffect } from "react";
 import { useAxios, useForm } from "../../hooks";
 import { ACTION_TYPE } from "../../utils";
+import { useAuth } from "../../context";
 
 export const Register = () => {
   const [terms, setTerms] = useState(false);
-  const { response, loading, error, sendRequest } = useAxios();
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
+  const { response, loading, error, setError, sendRequest } = useAxios();
   const { formState, formDispatch, errorState, resetErrors, validateForm } =
     useForm();
 
@@ -42,8 +45,17 @@ export const Register = () => {
   };
 
   useEffect(() => {
-    console.log(response);
-  }, [response, error]);
+    if (response) {
+      const token = response.encodedToken;
+      if (response.encodedToken) {
+        localStorage.setItem("token", token);
+        setAuth({ token });
+        navigate("/");
+      } else {
+        setError("Invalid");
+      }
+    }
+  }, [response]);
 
   return (
     <main className="full-container flex-row">

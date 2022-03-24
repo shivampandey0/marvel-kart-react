@@ -1,13 +1,16 @@
 import { AuthLeftContainer, Logo, Input, FormError } from "../../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/auth.css";
 import { useState, useEffect } from "react";
 import { useAxios } from "../../hooks";
+import { useAuth } from "../../context";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { response, loading, error, sendRequest } = useAxios();
+  const { response, loading, error, setError, sendRequest } = useAxios();
+  const { setAuth } = useAuth();
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -33,11 +36,16 @@ export const Login = () => {
 
   useEffect(() => {
     if (response) {
-      localStorage.setItem("token", response.encodedToken);
+      const token = response.encodedToken;
+      if (response.encodedToken) {
+        localStorage.setItem("token", token);
+        setAuth({ token });
+        navigate("/");
+      } else {
+        setError("Invalid");
+      }
     }
-    console.log(response);
-    console.log(error);
-  }, [response, error]);
+  }, [response]);
 
   return (
     <main className="full-container flex-row">
@@ -84,7 +92,6 @@ export const Login = () => {
               type="button"
               onClick={testLoginHandler}
             >
-              {loading && <i className="fas fa-circle-notch fa-spin"></i>}{" "}
               <h4 className="fw-bold">Fill with test-credentials</h4>
             </button>
             <p className="fw-bold py-4">
