@@ -10,7 +10,7 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { response, loading, error, setError, sendRequest } = useAxios();
-  const {  dispatchUserState } = useAuth();
+  const { dispatchUserState } = useAuth();
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
@@ -37,10 +37,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (response) {
-      const token = response.encodedToken;
       if (response.encodedToken) {
-        localStorage.setItem("token", token);
-        // setAuth({ token });
         dispatchUserState({
           type: ACTION_TYPE.INITIAL_STATE,
           payload: response,
@@ -76,16 +73,6 @@ export const Login = () => {
               placeholder={"********"}
               changeHandler={(e) => setPassword(e.target.value)}
             />
-
-            {/* <div className="flex-row align-cntr justify-sb">
-              <label htmlFor="remember">
-                <input type="checkbox" id="remember" /> Remember Me
-              </label>
-
-              <a className="txt-grey txt-sm my-4" href="#">
-                Forgot Password?
-              </a>
-            </div> */}
             {error && <FormError message={"Invalid Email or Password"} />}
 
             <button className="btn btn-primary btn-full my-4" type="submit">

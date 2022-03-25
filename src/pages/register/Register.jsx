@@ -46,10 +46,7 @@ export const Register = () => {
 
   useEffect(() => {
     if (response) {
-      const token = response.encodedToken;
       if (response.encodedToken) {
-        localStorage.setItem("token", token);
-        // setAuth({ token });
         dispatchUserState({
           type: ACTION_TYPE.INITIAL_STATE,
           payload: response,
