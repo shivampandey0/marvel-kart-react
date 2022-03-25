@@ -7,17 +7,31 @@ const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
   const [userState, dispatchUserState] = useReducer(userStateReducer, {
-    ...initialUserState,
     token: localStorage.getItem("token"),
+    userData: JSON.parse(localStorage.getItem("userData")) ?? {
+      ...initialUserState.userData,
+    },
   });
 
   const logoutUser = () => {
     dispatchUserState({ type: ACTION_TYPE.CLEAR });
-    localStorage.removeItem("token");
+  };
+
+  const inWishList = (id) => {
+    const list = userState.userData?.wishlist;
+    console.log(list, id);
+    return list.find((item) => item.title === id);
   };
 
   return (
-    <AuthContext.Provider value={{ logoutUser, userState, dispatchUserState }}>
+    <AuthContext.Provider
+      value={{
+        userState,
+        logoutUser,
+        inWishList,
+        dispatchUserState,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
