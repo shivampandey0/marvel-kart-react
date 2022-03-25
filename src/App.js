@@ -1,6 +1,7 @@
 import { Route, Routes, useLocation } from "react-router-dom";
+import { PrivateRoute } from "./components/PrivateRoute";
 import { Footer, Header } from "./components";
-import { Home, Products, Login, Register } from "./pages";
+import { Home, Products, Login, Register, Wishlist } from "./pages";
 
 function App() {
   const location = useLocation();
@@ -14,6 +15,14 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <Wishlist />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       {!routeCheck && <Footer />}
     </>

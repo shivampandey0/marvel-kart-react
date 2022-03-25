@@ -1,5 +1,13 @@
+import { useAuth } from "../../context";
+import "../../css/card.css";
+import { useAxios } from "../../hooks";
+import { ACTION_TYPE } from "../../utils";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 export const Product = ({ product }) => {
   const {
+    _id,
     title,
     image,
     price,
@@ -11,7 +19,42 @@ export const Product = ({ product }) => {
     offer,
   } = product;
 
-  // const finalPrice = Number(price) - (Number(price) * offer) / 100;
+  const { inWishList, userState, dispatchUserState } = useAuth();
+  const { response, loading, sendRequest } = useAxios();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (response) {
+      dispatchUserState({
+        type: ACTION_TYPE.ADD_TO_WISHLIST,
+        payload: response.wishlist,
+      });
+    }
+  }, [response]);
+
+  const wishClickHandler = () => {
+    console.log(inWishList(title));
+    if (!userState.token) {
+      navigate("/login");
+      return;
+    }
+    const config = {
+      method: "post",
+      url: "user/wishlist",
+      headers: {
+        authorization: userState.token,
+      },
+    };
+    if (inWishList(_id)) {
+      config.method = "delete";
+      config.url = `${config.url}/${_id}`;
+    } else {
+      config.data = { product };
+    }
+    sendRequest(config);
+  };
+
   return (
     <>
       <div className="card product-card">
@@ -45,11 +88,19 @@ export const Product = ({ product }) => {
         </div>
         <div className="card-buttons flex-column gap-05">
           <button className="btn btn-primary">Add to cart</button>
-          <button className="btn btn-outline">Buy Now</button>
+          {/* <button className="btn btn-outline">Buy Now</button> */}
         </div>
         <div className="card-icons top-right">
-          <button>
-            <i className="fas fa-heart icon"></i>
+          <button onClick={wishClickHandler}>
+            {loading ? (
+              <i className="fas fa-circle-notch fa-spin"></i>
+            ) : (
+              <i
+                className={`fas fa-heart icon ${
+                  inWishList(_id) && "primary-text-color"
+                } `}
+              />
+            )}
           </button>
         </div>
         {/* <span className="badge badge-info card-badge top-left">New</span> */}

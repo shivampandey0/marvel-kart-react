@@ -13,6 +13,7 @@ export const useAxios = () => {
     setError();
     try {
       const res = await axios.request(params);
+      console.log(params, res);
       setResponse(res.data);
     } catch (error) {
       setError(error);
