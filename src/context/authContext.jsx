@@ -1,20 +1,23 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer } from "react";
+import { userStateReducer, initialUserState } from "../reducers";
+import { ACTION_TYPE } from "../utils";
 
 const AuthContext = createContext();
 const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }) => {
-  const [auth, setAuth] = useState({ token: localStorage.getItem("token") });
+  const [userState, dispatchUserState] = useReducer(userStateReducer, {
+    ...initialUserState,
+    token: localStorage.getItem("token"),
+  });
 
   const logoutUser = () => {
-    setAuth();
+    dispatchUserState({ type: ACTION_TYPE.CLEAR });
     localStorage.removeItem("token");
   };
 
-  console.log(auth);
-
   return (
-    <AuthContext.Provider value={{ auth, setAuth, logoutUser }}>
+    <AuthContext.Provider value={{ logoutUser, userState, dispatchUserState }}>
       {children}
     </AuthContext.Provider>
   );

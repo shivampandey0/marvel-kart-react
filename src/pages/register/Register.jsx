@@ -14,7 +14,7 @@ import { useAuth } from "../../context";
 
 export const Register = () => {
   const [terms, setTerms] = useState(false);
-  const { setAuth } = useAuth();
+  const { dispatchUserState } = useAuth();
   const navigate = useNavigate();
   const { response, loading, error, setError, sendRequest } = useAxios();
   const { formState, formDispatch, errorState, resetErrors, validateForm } =
@@ -49,7 +49,11 @@ export const Register = () => {
       const token = response.encodedToken;
       if (response.encodedToken) {
         localStorage.setItem("token", token);
-        setAuth({ token });
+        // setAuth({ token });
+        dispatchUserState({
+          type: ACTION_TYPE.INITIAL_STATE,
+          payload: response,
+        });
         navigate("/");
       } else {
         setError("Invalid");

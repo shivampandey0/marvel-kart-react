@@ -3,7 +3,7 @@ import { Logo } from "../";
 import { useAuth } from "../../context";
 
 export const Header = () => {
-  const { auth, logoutUser } = useAuth();
+  const { userState, logoutUser } = useAuth();
   return (
     <>
       <header className="header">
@@ -29,7 +29,7 @@ export const Header = () => {
             </button>
             <ul className="menu">
               <li>
-                {auth && auth.token ? (
+                {userState.token ? (
                   <button className="btn btn-primary" onClick={logoutUser}>
                     Logout
                   </button>
@@ -43,7 +43,7 @@ export const Header = () => {
                 <Link to="/wishlist" className="wishlist">
                   <div className="badge-wrapper">
                     <i className="fas fa-heart menu-icon" />
-                    <span className="badge badge-info">3</span>
+                    <span className="badge badge-info">0</span>
                   </div>
                 </Link>
               </li>
@@ -51,7 +51,7 @@ export const Header = () => {
                 <Link to="/cart" className="cart">
                   <div className="badge-wrapper">
                     <i className="fas fa-shopping-cart menu-icon" />
-                    <span className="badge badge-info">3</span>
+                    <span className="badge badge-info">0</span>
                   </div>
                 </Link>
               </li>

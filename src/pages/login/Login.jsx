@@ -4,12 +4,13 @@ import "../../css/auth.css";
 import { useState, useEffect } from "react";
 import { useAxios } from "../../hooks";
 import { useAuth } from "../../context";
+import { ACTION_TYPE } from "../../utils";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { response, loading, error, setError, sendRequest } = useAxios();
-  const { setAuth } = useAuth();
+  const {  dispatchUserState } = useAuth();
   const navigate = useNavigate();
 
   const submitHandler = (e) => {
@@ -39,7 +40,11 @@ export const Login = () => {
       const token = response.encodedToken;
       if (response.encodedToken) {
         localStorage.setItem("token", token);
-        setAuth({ token });
+        // setAuth({ token });
+        dispatchUserState({
+          type: ACTION_TYPE.INITIAL_STATE,
+          payload: response,
+        });
         navigate("/");
       } else {
         setError("Invalid");
