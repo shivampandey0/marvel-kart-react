@@ -1,0 +1,5 @@
+/* Overrides */
+
+.card-icons > button {
+    opacity: 0.8;
+}

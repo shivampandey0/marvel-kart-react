@@ -27,3 +27,9 @@
 .form-error{
   background-color: white;
 }
+
+/* main container */
+.container {
+  min-height: 80vh;
+  margin: var(--scale-2);
+}
