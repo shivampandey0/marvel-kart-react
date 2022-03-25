@@ -36,7 +36,7 @@ export const WishCard = ({ product }) => {
   const wishClickHandler = () => {
     if (!userState.token) {
       navigate("/login");
-      return;
+      // return;
     }
     const config = {
       method: "post",
@@ -95,7 +95,7 @@ export const WishCard = ({ product }) => {
           ) : (
             <i
               className={`fas fa-heart icon ${
-                inWishList(title) && "primary-text-color"
+                inWishList(_id) && "primary-text-color"
               } `}
             />
           )}

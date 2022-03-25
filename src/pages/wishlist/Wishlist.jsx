@@ -3,8 +3,7 @@ import { useAuth } from "../../context";
 
 export const Wishlist = () => {
   const { userState } = useAuth();
-  const { wishlist } = userState.userData ?? [];
-  console.log(wishlist, userState);
+  const { wishlist } = userState.userData;
   return (
     <main className="container ">
       <h3 className="txt-center fw-bold my-8">My Wishlist</h3>

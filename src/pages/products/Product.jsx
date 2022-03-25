@@ -34,7 +34,7 @@ export const Product = ({ product }) => {
   }, [response]);
 
   const wishClickHandler = () => {
-    console.log(userState.token);
+    console.log(inWishList(title));
     if (!userState.token) {
       navigate("/login");
       return;
@@ -46,7 +46,7 @@ export const Product = ({ product }) => {
         authorization: userState.token,
       },
     };
-    if (inWishList(title)) {
+    if (inWishList(_id)) {
       config.method = "delete";
       config.url = `${config.url}/${_id}`;
     } else {
@@ -97,7 +97,7 @@ export const Product = ({ product }) => {
             ) : (
               <i
                 className={`fas fa-heart icon ${
-                  inWishList(title) && "primary-text-color"
+                  inWishList(_id) && "primary-text-color"
                 } `}
               />
             )}

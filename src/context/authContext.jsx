@@ -19,8 +19,7 @@ const AuthProvider = ({ children }) => {
 
   const inWishList = (id) => {
     const list = userState.userData?.wishlist;
-    console.log(list, id);
-    return list.find((item) => item.title === id);
+    return list.find((item) => item._id === id);
   };
 
   return (
