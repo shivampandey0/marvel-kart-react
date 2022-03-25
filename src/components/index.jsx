@@ -3,6 +3,7 @@ export { Header } from "./header/Header";
 export { Footer } from "./footer/Footer";
 export { Loader } from "./loader/Loader";
 export { Input } from "./input/Input";
+export { PrivateRoute } from "./PrivateRoute";
 export { FormError } from "./formError/FormError";
 export { Fieldset } from "./fieldset/Fieldset";
 export { AuthLeftContainer } from "./AuthLeftContainer";
