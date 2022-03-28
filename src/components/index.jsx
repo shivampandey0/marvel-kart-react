@@ -4,6 +4,7 @@ export { Footer } from "./footer/Footer";
 export { Loader } from "./loader/Loader";
 export { Input } from "./input/Input";
 export { WishCard } from "./cards/WishCard";
+export { CartCard } from "./cards/CartCard";
 export { PrivateRoute } from "./PrivateRoute";
 export { FormError } from "./formError/FormError";
 export { Fieldset } from "./fieldset/Fieldset";
