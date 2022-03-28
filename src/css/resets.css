@@ -1,0 +1,10 @@
+/* Marvel Ui Buttons Resets */
+
+.btn-primary,
+.btn-secondary {
+  border-color: transparent;
+}
+
+.btn-secondary{
+    background-color: var(--secondary);
+}

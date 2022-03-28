@@ -1,3 +1,4 @@
+@import url("./resets.css");
 @import url("./utils.css");
 html {
   font-size: 100%;
