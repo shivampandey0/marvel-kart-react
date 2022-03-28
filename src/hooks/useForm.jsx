@@ -13,9 +13,7 @@ export const useForm = () => {
     errorReducer,
     initialErrorStates
   );
-
-//   console.log(errorState);
-//   console.log(formState);
+  
   const validateForm = () => {
     let formValid = true;
     if (!nameRegex.test(formState.firstName)) {
