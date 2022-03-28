@@ -2,8 +2,8 @@ import { useAuth } from "../../context";
 import "../../css/card.css";
 import { useAxios } from "../../hooks";
 import { ACTION_TYPE } from "../../utils";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 export const WishCard = ({ product }) => {
   const {
@@ -19,8 +19,15 @@ export const WishCard = ({ product }) => {
     offer,
   } = product;
 
-  const { inWishList, userState, dispatchUserState } = useAuth();
+  const { inWishList, inCart, userState, dispatchUserState } = useAuth();
   const { response, loading, sendRequest } = useAxios();
+  const [addedToCart, setaddedToCart] = useState(false);
+
+  const {
+    response: cartRes,
+    loading: cartLoader,
+    sendRequest: cartRequest,
+  } = useAxios();
 
   const navigate = useNavigate();
 
@@ -31,27 +38,50 @@ export const WishCard = ({ product }) => {
         payload: response.wishlist,
       });
     }
-  }, [response]);
+    if (cartRes) {
+      setaddedToCart(true);
+      dispatchUserState({
+        type: ACTION_TYPE.ADD_TO_CART,
+        payload: cartRes.cart,
+      });
+    }
+  }, [response, cartRes]);
 
   const wishClickHandler = () => {
     if (!userState.token) {
       navigate("/login");
-      // return;
     }
     const config = {
-      method: "post",
-      url: "user/wishlist",
+      method: "delete",
+      url: `user/wishlist/${_id}`,
       headers: {
         authorization: userState.token,
       },
     };
-    if (inWishList(_id)) {
-      config.method = "delete";
-      config.url = `${config.url}/${_id}`;
-    } else {
-      config.data = { product };
-    }
+
     sendRequest(config);
+  };
+
+  const cartClickHandler = () => {
+    if (!userState.token) {
+      navigate("/login");
+    }
+
+    const url = inCart(_id) ? `user/cart/${_id}` : "user/cart";
+
+    const config = {
+      method: "post",
+      url: url,
+      headers: {
+        authorization: userState.token,
+      },
+      data: inCart(_id)
+        ? {
+            action: { type: "increment" },
+          }
+        : { product },
+    };
+    cartRequest(config);
   };
 
   return (
@@ -85,8 +115,16 @@ export const WishCard = ({ product }) => {
         <span className="txt-sm fw-normal primary-text-color">{` (${offer}% off)`}</span>
       </div>
       <div className="card-buttons flex-column gap-05">
-        <button className="btn btn-primary">Add to cart</button>
-        {/* <button className="btn btn-outline">Buy Now</button> */}
+        {addedToCart ? (
+          <Link className="btn btn-secondary" to={"/cart"}>
+            Go to Cart
+          </Link>
+        ) : (
+          <button onClick={cartClickHandler} className="btn btn-primary">
+            {cartLoader && <i className="fas fa-circle-notch fa-spin"></i>} Add
+            to cart
+          </button>
+        )}
       </div>
       <div className="card-icons top-right">
         <button onClick={wishClickHandler}>
