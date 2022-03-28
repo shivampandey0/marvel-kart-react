@@ -30,6 +30,15 @@ export const userStateReducer = (state, action) => {
       localStorage.setItem("userData", JSON.stringify(newState.userData));
       return newState;
     }
+
+    case ACTION_TYPE.ADD_TO_CART: {
+      const newState = {
+        ...state,
+        userData: { ...state.userData, cart: action.payload },
+      };
+      localStorage.setItem("userData", JSON.stringify(newState.userData));
+      return newState;
+    }
     case ACTION_TYPE.CLEAR:
       localStorage.removeItem("token");
       localStorage.removeItem("userData");
