@@ -20,11 +20,11 @@
   max-width: 80vh;
 }
 
-.pos-fixed{
+.pos-fixed {
   position: fixed;
 }
 
-.form-error{
+.form-error {
   background-color: white;
 }
 
@@ -32,8 +32,9 @@
 .container {
   min-height: 80vh;
   margin: var(--scale-2);
+  margin: 0 auto;
 }
 
-.w-100{
+.w-100 {
   width: 100%;
 }

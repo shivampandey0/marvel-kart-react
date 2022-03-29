@@ -5,7 +5,7 @@ import { useAxios } from "../../hooks";
 import { ACTION_TYPE } from "../../utils";
 
 export const CartCard = ({ product }) => {
-  const { _id, title, image, price, categoryName, qty, productType } = product;
+  const { _id, title, image, price, categoryName, qty, productType,offer } = product;
   const { userState, dispatchUserState } = useAuth();
   const {
     response: wishResponse,
@@ -43,7 +43,7 @@ export const CartCard = ({ product }) => {
       },
     };
     wishRequest(config);
-    updateCart();
+    removeFromCart();
   };
 
   const removeFromCart = () => {
@@ -111,7 +111,8 @@ export const CartCard = ({ product }) => {
           </div>
         </div>
         <div className="card-price">
-          <span className="h3 txt-bold">{`Rs. ${price}`}</span>
+          <span className="txt-sm fw-bold">{`Rs. ${price}`}</span>
+          <span className="txt-sm fw-normal primary-text-color">{` (${offer}% off)`}</span>
         </div>
         <div className="card-buttons flex-column gap-05">
           <button onClick={moveToWishlist} className="btn btn-outline">

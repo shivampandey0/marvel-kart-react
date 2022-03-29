@@ -24,7 +24,7 @@ export const Cart = () => {
           <CartSummary />
         </section>
       ) : (
-        <h3>Empty Cart</h3>
+        <h3 className="txt-center fw-bold">Cart is Empty</h3>
       )}
     </main>
   );
