@@ -22,12 +22,18 @@ const AuthProvider = ({ children }) => {
     return list.find((item) => item._id === id);
   };
 
+  const inCart = (id) => {
+    const list = userState.userData?.cart;
+    return list.find((item) => item._id === id);
+  };
+
   return (
     <AuthContext.Provider
       value={{
         userState,
         logoutUser,
         inWishList,
+        inCart,
         dispatchUserState,
       }}
     >

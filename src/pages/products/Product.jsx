@@ -19,8 +19,13 @@ export const Product = ({ product }) => {
     offer,
   } = product;
 
-  const { inWishList, userState, dispatchUserState } = useAuth();
+  const { inWishList, inCart, userState, dispatchUserState } = useAuth();
   const { response, loading, sendRequest } = useAxios();
+  const {
+    response: cartRes,
+    loading: cartLoader,
+    sendRequest: cartRequest,
+  } = useAxios();
 
   const navigate = useNavigate();
 
@@ -31,10 +36,15 @@ export const Product = ({ product }) => {
         payload: response.wishlist,
       });
     }
-  }, [response]);
+    if (cartRes) {
+      dispatchUserState({
+        type: ACTION_TYPE.ADD_TO_CART,
+        payload: cartRes.cart,
+      });
+    }
+  }, [response, cartRes]);
 
   const wishClickHandler = () => {
-    console.log(inWishList(title));
     if (!userState.token) {
       navigate("/login");
       return;
@@ -53,6 +63,28 @@ export const Product = ({ product }) => {
       config.data = { product };
     }
     sendRequest(config);
+  };
+
+  const cartClickHandler = () => {
+
+    if (!userState.token) {
+      navigate("/login");
+    }
+    if (inCart(_id)) {
+      navigate("/cart");
+      // return
+    }
+
+    const config = {
+      method: "post",
+      url: "user/cart",
+      headers: {
+        authorization: userState.token,
+      },
+      data: { product },
+    };
+
+    cartRequest(config);
   };
 
   return (
@@ -87,8 +119,13 @@ export const Product = ({ product }) => {
           <span className="txt-sm fw-normal primary-text-color">{` (${offer}% off)`}</span>
         </div>
         <div className="card-buttons flex-column gap-05">
-          <button className="btn btn-primary">Add to cart</button>
-          {/* <button className="btn btn-outline">Buy Now</button> */}
+          <button
+            onClick={cartClickHandler}
+            className={`btn  ${inCart(_id) ? "btn-secondary" : "btn-primary"}`}
+          >
+            {cartLoader && <i className="fas fa-circle-notch fa-spin"></i>}{" "}
+            {inCart(_id) ? `Go to cart` : `Add to cart`}
+          </button>
         </div>
         <div className="card-icons top-right">
           <button onClick={wishClickHandler}>

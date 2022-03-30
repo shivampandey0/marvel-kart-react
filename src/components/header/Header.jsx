@@ -5,7 +5,10 @@ import { useAuth } from "../../context";
 export const Header = () => {
   const { userState, logoutUser } = useAuth();
   const wishListCount = userState.userData.wishlist.length;
-  const cartCount = userState.userData.cart.length;
+  const cartCount = userState.userData.cart.reduce(
+    (acc, curr) => (acc += curr.qty),
+    0
+  );
   return (
     <>
       <header className="header">
@@ -55,7 +58,9 @@ export const Header = () => {
                 <Link to="/cart" className="cart">
                   <div className="badge-wrapper">
                     <i className="fas fa-shopping-cart menu-icon" />
-                    <span className="badge badge-info">{cartCount}</span>
+                    {cartCount > 0 && (
+                      <span className="badge badge-info">{cartCount}</span>
+                    )}
                   </div>
                 </Link>
               </li>
