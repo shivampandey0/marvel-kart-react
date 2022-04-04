@@ -1,8 +1,8 @@
 import { Logo } from "../logo/Logo";
-import styles from "./Footer.module.css";
+import "../../css/Footer.css";
 export const Footer = () => {
   return (
-    <footer className={`${styles.footer} flex-column flex-center`}>
+    <footer className='footer flex-column flex-center'>
       <h4>
         Made with <span className="secondary-text-color">&lt;/&gt;</span> by
         Shivam Pandey

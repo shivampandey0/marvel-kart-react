@@ -1,19 +1,40 @@
 import { createContext, useContext, useReducer } from "react";
-import { dataReducer } from "../reducers";
+import { dataReducer, initial } from "../reducers";
+import {
+  sortBy,
+  inStock,
+  fastDelivery,
+  priceRange,
+  rating,
+  categories,
+  productTypes,
+} from "../utils";
 
 const DataContext = createContext();
-
-const initial = {
-  categories: [],
-  products: [],
-  productTypes: [],
-};
 
 const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initial);
 
+  const compose =
+    (...func) =>
+    (state, data) =>
+      func.reduce((acc, curr) => {
+        return curr(state, acc);
+      }, data);
+
+  const filteredData = compose(
+    sortBy,
+    rating,
+    inStock,
+    categories,
+    fastDelivery,
+    productTypes,
+    priceRange
+  )(state.filters, state.products);
+
+
   return (
-    <DataContext.Provider value={{ state, dispatch }}>
+    <DataContext.Provider value={{filteredData, state, dispatch }}>
       {children}
     </DataContext.Provider>
   );

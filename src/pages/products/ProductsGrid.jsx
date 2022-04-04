@@ -1,9 +1,9 @@
 import { Loader } from "../../components";
-import { useFilters } from "../../context";
+import { useData } from "../../context";
 import { Product } from "./Product";
 
 export const ProductsGrid = ({ loading }) => {
-  const { filteredData } = useFilters();  
+  const { filteredData } = useData();
   return (
     <>
       <section className="listings-products">

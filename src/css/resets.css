@@ -1,4 +1,4 @@
-/* Marvel Ui Buttons Resets */
+/* Marvel UI Buttons Resets */
 
 .btn-primary,
 .btn-secondary {
@@ -7,4 +7,12 @@
 
 .btn-secondary{
     background-color: var(--secondary);
+}
+
+/* Marvel UI Header resets*/
+
+.header{
+  position: sticky;
+  top: 0;
+  z-index: var(--z-3);
 }
