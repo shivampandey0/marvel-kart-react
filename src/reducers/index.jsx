@@ -1,6 +1,5 @@
-export { dataReducer } from "./dataReducer";
+export { dataReducer, initial } from "./dataReducer";
 export { userStateReducer, initialUserState } from "./userStateReducer";
-export { filterReducer, initial } from "./filterReducer";
 export {
   initialForm,
   formReducer,

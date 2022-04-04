@@ -1,5 +1,5 @@
 import { FilterInput, Fieldset } from "../../components";
-import { useFilters } from "../../context";
+import { useData } from "../../context";
 import { PriceRange } from "./Range";
 import {
   ACTION_TYPE,
@@ -12,7 +12,8 @@ import { types } from "../../backend/db/types";
 import { categories } from "../../backend/db/categories";
 
 export const Filters = () => {
-  const { state: filterState, dispatch } = useFilters();
+  const { state, dispatch } = useData();
+  const { filters: filterState } = state;
 
   return (
     <>
@@ -112,7 +113,7 @@ export const Filters = () => {
                   value={productType}
                   changeHandler={(e) =>
                     dispatch({
-                      type: ACTION_TYPE.PRODUCT_TYPE,
+                      type: ACTION_TYPE.FILTER_PRODUCT_TYPES,
                       payload: e.target.value.toLowerCase(),
                     })
                   }
@@ -135,7 +136,7 @@ export const Filters = () => {
                   value={categoryName}
                   changeHandler={(e) =>
                     dispatch({
-                      type: ACTION_TYPE.CATEGORIES,
+                      type: ACTION_TYPE.FILTER_CATEGORIES,
                       payload: e.target.value.toLowerCase(),
                     })
                   }
