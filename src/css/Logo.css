@@ -1,0 +1,20 @@
+/* Logo */
+.nav_logo {
+  display: inline-block;
+  font-size: var(--size-8);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.nav_logo > * {
+  color: var(--white);
+  padding: var(--size-1) var(--size-2);
+  font-weight: var(--weight-bold);
+}
+
+.nav_logo span:nth-child(1) {
+  background-color: var(--primary);
+}
+
+.nav_logo span:nth-child(2) {
+  background-color: var(--secondary);
+}
