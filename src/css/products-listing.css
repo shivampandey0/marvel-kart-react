@@ -2,12 +2,10 @@
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: var(--scale-1);
-  height: 100vh;
   padding: var(--scale-1);
 }
 
 .listings-products {
-  overflow-y: auto;
   height: 100%;
 }
 
@@ -15,10 +13,9 @@
   padding-right: var(--scale-1);
   height: fit-content;
   position: sticky;
+  top: 5rem;
   overflow-y: auto;
   margin: var(--scale-1);
-  /* padding: var(--scale-1); */
-  /* background-color: var(--white); */
 }
 
 .products-wrapper {
