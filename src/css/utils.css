@@ -31,7 +31,11 @@
 /* main container */
 .container {
   min-height: 80vh;
-  margin: var(--scale-2);
+  margin: 0 auto;
+}
+
+.error-img {
+  height: calc(100vh - 100px);
   margin: 0 auto;
 }
 
