@@ -47,11 +47,15 @@ export const addItemToWishlistHandler = function (schema, request) {
     }
     const userWishlist = schema.users.findBy({ _id: userId }).wishlist;
     const { product } = JSON.parse(request.requestBody);
-    userWishlist.push({
-      ...product,
-      createdAt: formatDate(),
-      updatedAt: formatDate(),
-    });
+
+    if (!userWishlist.some((item) => item._id === product._id)) {
+      userWishlist.push({
+        ...product,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+      });
+    }
+
     this.db.users.update({ _id: userId }, { wishlist: userWishlist });
     return new Response(201, {}, { wishlist: userWishlist });
   } catch (error) {
