@@ -72,7 +72,7 @@ export const Product = ({ product }) => {
     }
     if (inCart(_id)) {
       navigate("/cart");
-      // return
+      return;
     }
 
     const config = {

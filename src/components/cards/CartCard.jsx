@@ -5,14 +5,19 @@ import { useAxios } from "../../hooks";
 import { ACTION_TYPE } from "../../utils";
 
 export const CartCard = ({ product }) => {
-  const { _id, title, image, price, categoryName, qty, productType,offer } = product;
+  const { _id, title, image, price, categoryName, qty, productType, offer } =
+    product;
   const { userState, dispatchUserState } = useAuth();
   const {
     response: wishResponse,
     loading: wishLoader,
     sendRequest: wishRequest,
   } = useAxios();
-  const { response: cartResponse, sendRequest: cartRequest } = useAxios();
+  const {
+    response: cartResponse,
+    sendRequest: cartRequest,
+    loading: cartLoader,
+  } = useAxios();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -94,7 +99,7 @@ export const CartCard = ({ product }) => {
             <button
               onClick={() => updateCart("decrement")}
               className="btn"
-              disabled={qty === 1}
+              disabled={qty === 1 || cartLoader}
             >
               <i className="fas fa-minus"></i>
             </button>
@@ -105,7 +110,11 @@ export const CartCard = ({ product }) => {
               min="1"
               aria-label="count"
             />
-            <button onClick={() => updateCart("increment")} className="btn">
+            <button
+              disabled={cartLoader}
+              onClick={() => updateCart("increment")}
+              className="btn"
+            >
               <i className="fas fa-plus"></i>
             </button>
           </div>
@@ -115,14 +124,18 @@ export const CartCard = ({ product }) => {
           <span className="txt-sm fw-normal primary-text-color">{` (${offer}% off)`}</span>
         </div>
         <div className="card-buttons flex-column gap-05">
-          <button onClick={moveToWishlist} className="btn btn-outline">
-            {wishLoader && <i className="fas fa-circle-notch fa-spin"></i>} Move
-            to Wishlist
+          <button
+            disabled={wishLoader}
+            onClick={moveToWishlist}
+            className="btn btn-outline"
+          >
+            {wishLoader && <i className="fas fa-circle-notch fa-spin"></i>} Move to
+            Wishlist
           </button>
         </div>
       </div>
       <div className="card-icons top-right">
-        <button onClick={removeFromCart}>
+        <button onClick={removeFromCart} disabled={wishLoader}>
           <i className="fas fa-times"></i>
         </button>
       </div>
