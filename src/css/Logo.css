@@ -1,8 +1,9 @@
 /* Logo */
 .nav_logo {
   display: inline-block;
-  font-size: var(--size-8);
+  font-size: var(--scale-2);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  white-space: nowrap;
 }
 
 .nav_logo > * {
@@ -18,3 +19,4 @@
 .nav_logo span:nth-child(2) {
   background-color: var(--secondary);
 }
+

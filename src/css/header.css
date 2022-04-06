@@ -1,0 +1,32 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-3);
+}
+
+.desktop-menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--scale-1);
+  padding: 0 var(--size-1);
+  align-items: center;
+  background-color: var(--primary-light);
+}
+
+@media screen and (max-width: 992px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-block: var(--size-2);
+  }
+  .search {
+    order: 3;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 440px) {
+    .navbar{
+        justify-content: center;
+    }
+}
