@@ -12,7 +12,7 @@ export const Home = () => {
               <span className="h1">MARVEL</span>
             </div>
             <p className="my-8 h2">
-              You ultimate destination for Marvel merchandise
+              Your ultimate destination for Marvel merchandise
             </p>
             <Link to={"/products"} className="btn btn-primary">
               Shop Now
