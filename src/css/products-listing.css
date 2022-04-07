@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: var(--scale-1);
-  padding: var(--scale-1);
 }
 
 .listings-products {
@@ -10,24 +9,27 @@
 }
 
 .listings-filters {
-  padding-right: var(--scale-1);
   height: fit-content;
   position: sticky;
   top: 5rem;
+  min-width: 280px;
   overflow-y: auto;
-  margin: var(--scale-1);
+  margin: var(--size-1);
 }
 
 .products-wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--scale-1);
+  padding-top: 2rem;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 300px;
+  justify-self: center;
   height: 100%;
   justify-items: start;
 }
@@ -37,6 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-block: 1rem;
 }
 
 .filter-list-item {
@@ -47,19 +50,57 @@
 }
 
 @media screen and (max-width: 1200px) {
-  .listings-products {
+  .products-wrapper {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+@media screen and (min-width: 900px) {
+  .pointer-event-none {
+    pointer-events: none;
+  }
+}
 @media screen and (max-width: 900px) {
-  .listings-products {
-    grid-template-columns: repeat(3, 1fr);
+  .products-wrapper {
+    grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   }
-}
 
-@media screen and (max-width: 600px) {
-  .listings-products {
-    grid-template-columns: repeat(2, 1fr);
+  .listings-container {
+    grid-template-columns: 1fr;
+  }
+  .listings-filters {
+    position: fixed;
+    width: 100%;
+    top: unset;
+    bottom: 0;
+    height: 4rem;
+    z-index: 2;
+    margin: 0;
+  }
+  .filter-header {
+    background-color: var(--white);
+    padding-inline: var(--scale-1);
+  }
+
+  .filter-header > p {
+    cursor: pointer;
+  }
+
+  .filters-group {
+    display: none;
+  }
+
+  .filter-open {
+    height: 100vh;
+    width: 100vw;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    z-index: 4;
+    background-color: white;
+  }
+
+  .filter-open .filters-group {
+    display: block;
   }
 }
