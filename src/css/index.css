@@ -1,5 +1,6 @@
 @import url("./resets.css");
 @import url("./utils.css");
+@import url("./header.css");
 html {
   font-size: 100%;
   font-family: Arial, Helvetica, sans-serif;
@@ -16,4 +17,10 @@ html {
   --white: #ffffff;
 
   --link: #212121;
+}
+
+@media screen and (max-width:768px) {
+  html{
+    font-size: 80%;
+  }
 }

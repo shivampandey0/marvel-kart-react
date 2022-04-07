@@ -1,7 +1,52 @@
-# Marvel Kart 
- An ecommerce app built with React
+<div align="center">
 
-# Getting Started with Create React App
+# Marvel Kart
+
+### Marvel-Kart is an e-commerce platform for all the Marvel merchandise.
+
+Find the best deals on your favourite Marvel Characters Action Figure and merchs!
+
+![Forks](https://img.shields.io/github/forks/shivampandey0/marvel-kart-react)
+![Stars](https://img.shields.io/github/stars/shivampandey0/marvel-kart-react)
+
+</div>
+
+---
+
+## Live Deployment
+
+Checkout the live web app [here](https://marvel-kart.netlify.app/)
+
+---
+
+## Features
+
+- Landing page with featured categories
+- Products listing page with latest products
+- Filters to view filter and sort products
+- Cart Management
+- Wishlist Management
+- Signup/Login
+
+---
+
+## Built with
+
+- React JS (v17.0.2)
+- [Marvel UI Component library](https://github.com/shivampandey0/Marvel-UI-Component-Library)
+- React Router v6
+- Illustrations from Storyset
+- Auth using JWT provided by [mockBee](https://mockbee.netlify.app/)
+- Backend based on Mirage.js provided by [mockBee](https://mockbee.netlify.app/)
+
+---
+
+## Preview
+
+![preview](./demo.gif)
+
+
+# Setting up project locally
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

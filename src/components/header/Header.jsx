@@ -9,14 +9,12 @@ export const Header = () => {
     (acc, curr) => (acc += curr.qty),
     0
   );
+
   return (
     <>
       <header className="header">
         <nav className="navbar">
           <div className="nav-brand">
-            <button className="btn hamburger-menu">
-              <i className="fas fa-bars icon" />
-            </button>
             <Logo />
           </div>
           <div className="search">
@@ -28,11 +26,8 @@ export const Header = () => {
               aria-label="Search Products"
             />
           </div>
-          <div className="nav mobile-nav">
-            <button className="btn nav-close-btn">
-              <i className="fas fa-arrow-left" />
-            </button>
-            <ul className="menu">
+          <div>
+            <ul className="desktop-menu">
               <li>
                 {userState.token ? (
                   <button className="btn btn-primary" onClick={logoutUser}>
