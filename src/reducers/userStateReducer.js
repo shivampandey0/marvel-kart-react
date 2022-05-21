@@ -1,4 +1,4 @@
-import { ACTION_TYPE } from "../utils/constants";
+import { ACTION_TYPE } from '../utils/constants';
 
 export const initialUserState = {
   token: null,
@@ -17,8 +17,8 @@ export const userStateReducer = (state, action) => {
         userData: action.payload.foundUser,
       };
 
-      localStorage.setItem("token", newState.token);
-      localStorage.setItem("userData", JSON.stringify(newState.userData));
+      localStorage.setItem('token', newState.token);
+      localStorage.setItem('userData', JSON.stringify(newState.userData));
       return newState;
     }
 
@@ -27,7 +27,7 @@ export const userStateReducer = (state, action) => {
         ...state,
         userData: { ...state.userData, wishlist: action.payload },
       };
-      localStorage.setItem("userData", JSON.stringify(newState.userData));
+      localStorage.setItem('userData', JSON.stringify(newState.userData));
       return newState;
     }
 
@@ -36,12 +36,12 @@ export const userStateReducer = (state, action) => {
         ...state,
         userData: { ...state.userData, cart: action.payload },
       };
-      localStorage.setItem("userData", JSON.stringify(newState.userData));
+      localStorage.setItem('userData', JSON.stringify(newState.userData));
       return newState;
     }
     case ACTION_TYPE.CLEAR:
-      localStorage.removeItem("token");
-      localStorage.removeItem("userData");
+      localStorage.removeItem('token');
+      localStorage.removeItem('userData');
       return { ...initialUserState };
     default:
       return state;
