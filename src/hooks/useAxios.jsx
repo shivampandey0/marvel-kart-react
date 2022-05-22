@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useState } from "react";
+import axios from 'axios';
+import { useState } from 'react';
 
-axios.defaults.baseURL = "api/";
+axios.defaults.baseURL = 'api/';
 
 export const useAxios = () => {
   const [response, setResponse] = useState(null);
@@ -13,6 +13,7 @@ export const useAxios = () => {
     setError();
     try {
       const res = await axios.request(params);
+
       setResponse(res.data);
     } catch (error) {
       setError(error);
@@ -20,6 +21,7 @@ export const useAxios = () => {
       setLoading(false);
     }
   };
+  console.log(response, error);
 
   return { response, error, setError, loading, sendRequest };
 };

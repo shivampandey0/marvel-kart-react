@@ -39,6 +39,14 @@ export const userStateReducer = (state, action) => {
       localStorage.setItem('userData', JSON.stringify(newState.userData));
       return newState;
     }
+    case ACTION_TYPE.ADDRESS: {
+      const newState = {
+        ...state,
+        userData: { ...state.userData, address: action.payload },
+      };
+      localStorage.setItem('userData', JSON.stringify(newState.userData));
+      return newState;
+    }
     case ACTION_TYPE.CLEAR:
       localStorage.removeItem('token');
       localStorage.removeItem('userData');
