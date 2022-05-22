@@ -4,8 +4,6 @@ import '../../css/cart.css';
 import { Address } from './Address';
 import { CartSummary } from './CartSummary';
 import { v4 as uuid } from 'uuid';
-// import { useAxios } from '../../hooks';
-// import { useEffect } from 'react';
 import { ACTION_TYPE, emptyCart } from '../../utils';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,43 +14,7 @@ export const Cart = () => {
   } = useAuth();
   const { cart, address } = userData;
   const defaultAddress = address?.find((adr) => adr.default);
-  // const { response, sendRequest } = useAxios();
   const navigate = useNavigate();
-
-  // const emptyCart = () => {
-  //   const config = {
-  //     method: 'delete',
-  //     url: `user/cart`,
-  //     headers: {
-  //       authorization: token,
-  //     },
-  //   };
-  //   sendRequest(config);
-  // };
-
-  // useEffect(() => {
-  //   if (response) {
-  //     dispatchUserState({
-  //       type: ACTION_TYPE.ADD_TO_CART,
-  //       payload: response.cart,
-  //     });
-  //   }
-  // }, [response]);
-
-  // const emptyCart = async () => {
-  //   try {
-  //     const { data } = await axios.delete('/user/cart', {
-  //       headers: { authorization: token },
-  //     });
-  //     console.log(data);
-  //     dispatchUserState({
-  //       type: ACTION_TYPE.ADD_TO_CART,
-  //       payload: data.cart,
-  //     });
-  //   } catch (error) {
-  //     throw new Error(error);
-  //   }
-  // };
 
   const loadScript = async (url) => {
     return new Promise((resolve) => {
@@ -71,7 +33,6 @@ export const Cart = () => {
   };
 
   const displayRazorpay = async ({ amount }) => {
-    console.log(amount);
     const res = await loadScript(
       'https://checkout.razorpay.com/v1/checkout.js'
     );
@@ -103,8 +64,6 @@ export const Cart = () => {
           mobile: defaultAddress.mobile,
           delivery: orderAddress,
         };
-
-        console.log(response);
 
         emptyCart(token, dispatchUserState);
         dispatchUserState({ type: ACTION_TYPE.ORDERS, payload: orderData });

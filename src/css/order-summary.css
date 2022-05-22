@@ -33,14 +33,6 @@
   line-height: 2rem;
 }
 
-/* .summary-right .card {
-  border-radius: 10px;
-  margin: 0.5rem 0 1rem 0;
-  width: 25rem;
-  box-shadow: none;
-  border: 1px solid var(--lightGrey);
-} */
-
 .summary-right .price {
   padding-top: 0.5rem;
   font-family: inherit;
