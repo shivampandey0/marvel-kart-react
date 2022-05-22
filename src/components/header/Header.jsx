@@ -1,14 +1,37 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Logo } from '../';
-import { useAuth } from '../../context';
+import { useAuth, useData } from '../../context';
+import { ACTION_TYPE } from '../../utils';
 
 export const Header = () => {
   const { userState } = useAuth();
+  const {
+    state: {
+      filters: { searchTerm: _searchTerm },
+    },
+    dispatch,
+  } = useData();
+  const [searchTerm, setSearchTerm] = useState(_searchTerm);
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const wishListCount = userState.userData.wishlist.length;
   const cartCount = userState.userData.cart.reduce(
     (acc, curr) => (acc += curr.qty),
     0
   );
+  const currentPath = location.pathname;
+
+  useEffect(() => {
+    if (currentPath !== '/products') {
+      setSearchTerm('');
+    }
+  }, [location]);
+
+  useEffect(() => {
+    dispatch({ type: ACTION_TYPE.SEARCH, payload: searchTerm.toLowerCase() });
+  }, [searchTerm]);
 
   return (
     <>
@@ -22,6 +45,13 @@ export const Header = () => {
             <input
               className='search-field'
               type='search'
+              value={searchTerm}
+              onChange={(e) => {
+                if (e.target.value && (currentPath !== '/products')) {
+                  navigate('/products');
+                }
+                setSearchTerm(e.target.value);
+              }}
               placeholder='Search...'
               aria-label='Search Products'
             />

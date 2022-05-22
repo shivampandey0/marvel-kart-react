@@ -1,5 +1,5 @@
-import { createContext, useContext, useReducer } from "react";
-import { dataReducer, initial } from "../reducers";
+import { createContext, useContext, useReducer } from 'react';
+import { dataReducer, initial } from '../reducers';
 import {
   sortBy,
   inStock,
@@ -8,7 +8,8 @@ import {
   rating,
   categories,
   productTypes,
-} from "../utils";
+  search,
+} from '../utils';
 
 const DataContext = createContext();
 
@@ -29,12 +30,12 @@ const DataProvider = ({ children }) => {
     categories,
     fastDelivery,
     productTypes,
-    priceRange
+    priceRange,
+    search
   )(state.filters, state.products);
 
-
   return (
-    <DataContext.Provider value={{filteredData, state, dispatch }}>
+    <DataContext.Provider value={{ filteredData, state, dispatch }}>
       {children}
     </DataContext.Provider>
   );

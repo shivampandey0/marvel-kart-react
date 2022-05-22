@@ -1,4 +1,4 @@
-import { ACTION_TYPE } from "../utils/constants";
+import { ACTION_TYPE } from '../utils/constants';
 
 export const initial = {
   products: [],
@@ -6,6 +6,7 @@ export const initial = {
   productTypes: [],
   filters: {
     sortBy: null,
+    searchTerm: '',
     rating: null,
     inStock: false,
     fastDelivery: false,
@@ -27,6 +28,11 @@ export const dataReducer = (state, action) => {
       return {
         ...state,
         filters: { ...state.filters, sortBy: action.payload },
+      };
+    case ACTION_TYPE.SEARCH:
+      return {
+        ...state,
+        filters: { ...state.filters, searchTerm: action.payload },
       };
 
     case ACTION_TYPE.PRICE_RANGE:
