@@ -1,0 +1,84 @@
+.summary-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: var(--scale-2);
+  min-height: 80vh;
+}
+
+.summary-container {
+  box-shadow: rgb(90 90 90 / 35%) 0px 5px 15px;
+  padding: 2rem 4rem 0;
+}
+
+.summary-header {
+  color: green;
+}
+
+.summary-main {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+
+.summary-right {
+  max-height: 25rem;
+  overflow-y: auto;
+  padding: 0rem 1rem;
+}
+
+.summary-left {
+  line-height: 2rem;
+}
+
+/* .summary-right .card {
+  border-radius: 10px;
+  margin: 0.5rem 0 1rem 0;
+  width: 25rem;
+  box-shadow: none;
+  border: 1px solid var(--lightGrey);
+} */
+
+.summary-right .price {
+  padding-top: 0.5rem;
+  font-family: inherit;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  font-size: 0.9rem;
+}
+
+.summary-right .card .card-img {
+  height: 10rem;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--darkBlue);
+  border-radius: 10px;
+}
+
+.order-msg {
+  margin-bottom: 2rem;
+}
+@media screen and (max-width: 950px) {
+  .summary-main {
+    flex-wrap: wrap;
+  }
+  .summary-container {
+    padding: 2rem 1rem;
+  }
+  .summary-right .card {
+    width: 20rem;
+  }
+}

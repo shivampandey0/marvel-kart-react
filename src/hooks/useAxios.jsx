@@ -13,7 +13,6 @@ export const useAxios = () => {
     setError();
     try {
       const res = await axios.request(params);
-
       setResponse(res.data);
     } catch (error) {
       setError(error);
@@ -21,7 +20,6 @@ export const useAxios = () => {
       setLoading(false);
     }
   };
-  console.log(response, error);
 
   return { response, error, setError, loading, sendRequest };
 };

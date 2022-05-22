@@ -12,6 +12,7 @@ import {
   Info,
   Addresses,
   Orders,
+  OrderSummary,
 } from './pages';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route element={<RequiresAuth />}>
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/order-summary' element={<OrderSummary />} />
 
           <Route path='/profile' element={<Profile />}>
             <Route path='/profile' element={<Info />} />

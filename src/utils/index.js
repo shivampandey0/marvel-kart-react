@@ -6,8 +6,8 @@ export {
   LOW_HIGH_RATING,
   emailRegex,
   nameRegex,
-  passwordRegex
-} from "./constants";
+  passwordRegex,
+} from './constants';
 
 export {
   sortBy,
@@ -17,4 +17,6 @@ export {
   rating,
   categories,
   productTypes,
-} from "./filters";
+} from './filters';
+
+export { emptyCart } from './services';

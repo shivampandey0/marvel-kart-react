@@ -18,15 +18,18 @@ export const Addresses = () => {
     country: '',
     zipCode: '',
     mobile: '',
-    default: false,
   };
   const [formDisplay, setFormDisplay] = useState(false);
   const [addressForm, setAddForm] = useState(formValue);
 
   const addAddress = (address) => {
+    const defaultAddress = userData.address.length < 1;
     dispatchUserState({
       type: ACTION_TYPE.ADDRESS,
-      payload: [...userData.address, { _id: uuid(), ...address }],
+      payload: [
+        ...userData.address,
+        { _id: uuid(), ...address, default: defaultAddress },
+      ],
     });
     setFormDisplay(false);
   };
