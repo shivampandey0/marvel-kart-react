@@ -1,14 +1,24 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { Logo } from '../';
-import { useAuth } from '../../context';
+import { useAuth, useData } from '../../context';
+import { ACTION_TYPE } from '../../utils';
 
 export const Header = () => {
   const { userState } = useAuth();
+  const { dispatch } = useData();
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+
   const wishListCount = userState.userData.wishlist.length;
   const cartCount = userState.userData.cart.reduce(
     (acc, curr) => (acc += curr.qty),
     0
   );
+
+  useEffect(() => {
+    dispatch({ type: ACTION_TYPE.SEARCH, payload: searchTerm.toLowerCase() });
+  }, [searchTerm]);
 
   return (
     <>
@@ -22,6 +32,11 @@ export const Header = () => {
             <input
               className='search-field'
               type='search'
+              value={searchTerm}
+              onChange={(e) => {
+                navigate('/products');
+                setSearchTerm(e.target.value);
+              }}
               placeholder='Search...'
               aria-label='Search Products'
             />

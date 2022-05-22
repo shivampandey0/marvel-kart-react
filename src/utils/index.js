@@ -17,6 +17,7 @@ export {
   rating,
   categories,
   productTypes,
+  search,
 } from './filters';
 
 export { emptyCart } from './services';

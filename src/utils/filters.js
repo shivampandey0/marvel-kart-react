@@ -3,7 +3,7 @@ import {
   HIGH_LOW_RATING,
   LOW_HIGH_PRICE,
   LOW_HIGH_RATING,
-} from "./constants";
+} from './constants';
 
 export const sortBy = (state, data) => {
   switch (state.sortBy) {
@@ -37,7 +37,6 @@ export const fastDelivery = (state, data) =>
   state.fastDelivery ? [...data].filter((item) => item.fastDelivery) : data;
 
 export const priceRange = (state, data) => {
- 
   return [...data].filter((item) => Number(item.price) <= state.priceRange);
 };
 
@@ -74,5 +73,15 @@ export const productTypes = (state, data) => {
 
   return [...data].filter((item) =>
     state.productTypes.includes(item.productType.toLowerCase())
+  );
+};
+
+export const search = (state, data) => {
+  if (!state.searchTerm) {
+    return data;
+  }
+
+  return [...data].filter((item) =>
+    item.title.toLowerCase().includes(state.searchTerm)
   );
 };

@@ -1,5 +1,6 @@
 .listings-container {
   display: grid;
+  min-height: 90vh;
   grid-template-columns: 1fr 4fr;
   gap: var(--scale-1);
 }
