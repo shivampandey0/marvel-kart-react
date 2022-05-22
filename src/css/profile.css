@@ -1,0 +1,11 @@
+.profile-container {
+  display: flex;
+  border: 1px solid;
+  margin: 0 3rem;
+  width: 23rem;
+  flex-direction: column;
+}
+
+.profile-container > .tabs {
+  border-bottom: 1px solid;
+}
