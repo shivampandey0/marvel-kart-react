@@ -14,11 +14,11 @@ export const CartSummary = ({ onOrder }) => {
       (acc, curr) => acc + ((Number(curr.price) * curr.offer) / 100) * curr.qty,
       0
     )
-    .toFixed(2);
+    .toFixed(0);
 
   const deliveryCharges = 99.0;
 
-  const total = (price - discount + deliveryCharges).toFixed(2);
+  const total = (price - discount + deliveryCharges).toFixed(0);
 
   return (
     <div className='cart-summary'>

@@ -4,9 +4,10 @@ import '../../css/cart.css';
 import { Address } from './Address';
 import { CartSummary } from './CartSummary';
 import { v4 as uuid } from 'uuid';
-import { useAxios } from '../../hooks';
-import { useEffect } from 'react';
-import { ACTION_TYPE } from '../../utils';
+// import { useAxios } from '../../hooks';
+// import { useEffect } from 'react';
+import { ACTION_TYPE, emptyCart } from '../../utils';
+import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
   const {
@@ -15,27 +16,28 @@ export const Cart = () => {
   } = useAuth();
   const { cart, address } = userData;
   const defaultAddress = address?.find((adr) => adr.default);
-  const { response, sendRequest } = useAxios();
+  // const { response, sendRequest } = useAxios();
+  const navigate = useNavigate();
 
-  const emptyCart = () => {
-    const config = {
-      method: 'delete',
-      url: `user/cart`,
-      headers: {
-        authorization: token,
-      },
-    };
-    sendRequest(config);
-  };
+  // const emptyCart = () => {
+  //   const config = {
+  //     method: 'delete',
+  //     url: `user/cart`,
+  //     headers: {
+  //       authorization: token,
+  //     },
+  //   };
+  //   sendRequest(config);
+  // };
 
-  useEffect(() => {
-    if (response) {
-      dispatchUserState({
-        type: ACTION_TYPE.ADD_TO_CART,
-        payload: response.cart,
-      });
-    }
-  }, [response]);
+  // useEffect(() => {
+  //   if (response) {
+  //     dispatchUserState({
+  //       type: ACTION_TYPE.ADD_TO_CART,
+  //       payload: response.cart,
+  //     });
+  //   }
+  // }, [response]);
 
   // const emptyCart = async () => {
   //   try {
@@ -69,6 +71,7 @@ export const Cart = () => {
   };
 
   const displayRazorpay = async ({ amount }) => {
+    console.log(amount);
     const res = await loadScript(
       'https://checkout.razorpay.com/v1/checkout.js'
     );
@@ -96,11 +99,17 @@ export const Cart = () => {
           products: [...cart],
           amount: amount,
           paymentId: response.razorpay_payment_id,
+          name: defaultAddress.name,
+          mobile: defaultAddress.mobile,
           delivery: orderAddress,
         };
 
-        emptyCart();
+        console.log(response);
+
+        emptyCart(token, dispatchUserState);
         dispatchUserState({ type: ACTION_TYPE.ORDERS, payload: orderData });
+
+        navigate('/order-summary', { state: orderData });
       },
       prefill: {
         name: `${defaultAddress.name}`,

@@ -7,5 +7,6 @@ export { Profile } from './profile/Profile';
 export { Addresses } from './profile/Addresses';
 export { Info } from './profile/Info';
 export { Orders } from './profile/Orders';
+export { OrderSummary } from './order-summary/OrderSummary';
 export { Wishlist } from './wishlist/Wishlist';
 export { Products } from './products/Products';

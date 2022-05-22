@@ -50,7 +50,10 @@ export const userStateReducer = (state, action) => {
     case ACTION_TYPE.ORDERS: {
       const newState = {
         ...state,
-        userData: { ...state.userData, orders: action.payload },
+        userData: {
+          ...state.userData,
+          orders: [...state.userData.orders, action.payload],
+        },
       };
       localStorage.setItem('userData', JSON.stringify(newState.userData));
       return newState;

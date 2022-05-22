@@ -53,6 +53,7 @@ export function makeServer({ environment = 'development' } = {}) {
       cart: Model,
       wishlist: Model,
       address: Model,
+      orders: Model,
     },
 
     // Runs on the start of the server
@@ -68,6 +69,7 @@ export function makeServer({ environment = 'development' } = {}) {
           ...item,
           cart: [],
           wishlist: [],
+          orders: [],
           address: [
             {
               _id: uuid(),
