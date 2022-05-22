@@ -9,3 +9,77 @@
 .profile-container > .tabs {
   border-bottom: 1px solid;
 }
+
+/* Address Form */
+
+.address-form-container {
+  background: rgba(255, 255, 255, 0.75);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 2;
+  /* transition: background ease 0.3s; */
+}
+
+.address-form-input {
+  border-radius: var(--radius-sm);
+  border: 2px solid #dfdfdf;
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  width: 400px;
+}
+
+.address-form-input::placeholder {
+  font-size: 0.7rem;
+}
+
+.address-form,
+.address-form .form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.address-form {
+  padding: 1rem;
+  width: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: white;
+}
+
+.address-form-btn {
+  display: flex;
+  gap: 1rem;
+}
+
+.address-form-btn .btn {
+  font-size: 1rem;
+}
+
+.displayNone {
+  display: none;
+}
+
+.displayFlex {
+  display: flex;
+}
+@media screen and (max-width: 500px) {
+  .tabs label {
+    padding: 0.5rem 1rem;
+  }
+
+  .tabs {
+    width: 300px;
+  }
+
+  .profile-details-main {
+    gap: 0.5rem;
+  }
+  .address-form-input {
+    width: inherit;
+  }
+}

@@ -68,7 +68,6 @@ export const WishCard = ({ product }) => {
     }
 
     const url = inCart(_id) ? `user/cart/${_id}` : "user/cart";
-
     const config = {
       method: "post",
       url: url,

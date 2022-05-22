@@ -16,7 +16,6 @@ export const Profile = () => {
             {routes.map(({ name, link }) => (
               <NavLink
                 className={({ isActive }) => {
-                  console.log(isActive);
                   return isActive ? 'btn btn-primary btn-full' : 'btn btn-full';
                 }}
                 to={link}
