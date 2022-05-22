@@ -17,6 +17,7 @@ import {
 
 function App() {
   const location = useLocation();
+
   const routeCheck =
     location.pathname === '/login' || location.pathname === '/register';
   return (
