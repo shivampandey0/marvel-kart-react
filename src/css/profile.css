@@ -67,6 +67,14 @@
 .displayFlex {
   display: flex;
 }
+
+.default-mark {
+  background-color: rgb(203, 203, 203);
+  padding: var(--size-1) var(--size-2);
+  color: rgb(88, 88, 88);
+  border-radius: var(--radius-sm);
+}
+
 @media screen and (max-width: 500px) {
   .tabs label {
     padding: 0.5rem 1rem;

@@ -70,13 +70,14 @@ export function makeServer({ environment = 'development' } = {}) {
           address: [
             {
               _id: uuid(),
-              name: 'Rutvik Umak',
-              street: '#1/4 , 100ft Ring Road, Karve Nagar',
-              city: 'Bangalore',
-              state: 'Maharashtra ',
+              name: 'Shivam Pandey',
+              street: '422/234 , Campwell Road, Balaganj',
+              city: 'Lucknow',
+              state: 'Uttar Pradesh ',
               country: 'India',
-              zipCode: '452412',
+              zipCode: '226001',
               mobile: '123456789',
+              default: true,
             },
           ],
         })

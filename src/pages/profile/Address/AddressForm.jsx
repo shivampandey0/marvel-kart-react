@@ -5,6 +5,7 @@ export const AddressForm = ({
   setFormDisplay,
   formValue,
   onSave,
+  onEdit,
 }) => {
   const fillFormValue = (event, fieldName) => {
     const { value } = event.target;
@@ -33,7 +34,7 @@ export const AddressForm = ({
 
   const saveHandler = (e) => {
     e.preventDefault();
-    onSave(addressForm);
+    addressForm._id ? onEdit(addressForm) : onSave(addressForm);
   };
 
   return (
