@@ -1,7 +1,7 @@
 /* Hero image */
 
 .home-hero {
-  background: url(https://marvel-kart.stdcdn.com/landing-page-bg.webp) center
+  background: url(https://res.cloudinary.com/dxhz9n8hc/image/upload/v1664099473/landing-page-bg_uagvf7.webp) center
     center / 100% no-repeat;
   background-size: cover;
   box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.758);
